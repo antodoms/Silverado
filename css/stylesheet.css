@@ -1,0 +1,46 @@
+body{
+    background-color:black; 
+    color:white;
+}
+
+/* Android phone, smartphones, landscape iPhone */
+@media only screen and (min-width: 480px) {
+ body{
+     background-color:green; 
+    color:white;
+ }
+    
+}
+/* portrait tablets, portrait iPad, e-readers
+(Nook/Kindle), landscape 800x480 phones (Android)
+*/
+@media only screen and (min-width: 650px) {
+ body{
+     background-color:yellow; 
+    color:white;
+ }
+ 
+ }
+ /* iPads (landscape) */
+ @media only screen and (min-width: 800px) {
+ body{
+     background-color:blue; 
+    color:white;
+ }
+ }
+ /* big landscape tablets, laptops and desktops */
+ @media only screen and (min-width: 1025px) {
+ body{
+     background-color:red; 
+    color:white;
+ }
+ }
+ 
+ /* hi-res laptops and desktops */
+ @media only screen and (min-width: 1281px) {
+ body{
+     background-color:black; 
+    color:white;
+ }
+ 
+ }
