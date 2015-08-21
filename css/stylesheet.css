@@ -3,11 +3,45 @@ body{
     color:white;
 }
 
+nav ul a {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 20px;
+    font-family: Verdana;
+}
+nav ul a:hover{
+    color: white;
+    background-color: black;
+}
+
+header {
+    background-color: white;
+    color: cadetblue;
+    width: 100%;
+    position: absolute;
+    min-height: 54px;
+    padding-top: 4px;
+    margin: -8px;
+    box-shadow: 2px 3px 1px #8C8989;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    position: relative;
+    float: left;
+}
+
+
+
 /* Android phone, smartphones, landscape iPhone */
 @media only screen and (min-width: 480px) {
  body{
      background-color:green; 
-    color:white;
+    /*color:white;*/
  }
     
 }
@@ -17,7 +51,7 @@ body{
 @media only screen and (min-width: 650px) {
  body{
      background-color:yellow; 
-    color:white;
+    /*color:white;*/
  }
  
  }
@@ -25,14 +59,14 @@ body{
  @media only screen and (min-width: 800px) {
  body{
      background-color:blue; 
-    color:white;
+    /*color:white;*/
  }
  }
  /* big landscape tablets, laptops and desktops */
  @media only screen and (min-width: 1025px) {
  body{
      background-color:red; 
-    color:white;
+    /*color:white;*/
  }
  }
  
@@ -40,7 +74,7 @@ body{
  @media only screen and (min-width: 1281px) {
  body{
      background-color:black; 
-    color:white;
+    /*color:white;*/
  }
  
  }
