@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Silverado Movies</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="./js/movies.js"></script>
+        
+    </head>
+    
+   <body>
+        
+        <header>
+            <nav>
+               <ul>
+                    <li><a href="./">Home</a></li>
+                    <li hidden><a href="#">Bookings</a></li>
+                    <li><a href="./movies.html">Movies</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+        
+        <div id="list">
+            <div class="movies" onclick="showtime(1);">
+                <img src="./images/thumbnails/avengers.png" />
+                <h1>Avengers</h1>
+            </div>
+            
+            <div class="movies" onclick="showtime(2);">
+                <img src="./images/thumbnails/incredibles.png" />
+                <h1>Incredibles</h1>
+            </div>
+            
+            <div class="movies" onclick="showtime(3);">
+                <img src="./images/thumbnails/jurasic.png" />
+                <h1>Jurasic Park</h1>
+            </div>
+            
+            <div class="movies" onclick="showtime(4);">
+                <img src="./images/thumbnails/lifeofpi.png" />
+                <h1>Life of Pi</h1>
+            </div>
+        </div>
+            
+         <div class="container">
+            <table id="datetime">
+              <tr>
+                <th>Monday</th>
+                <th>Tuesday</th>		
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+                <th>Sunday</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+        </div>
+        
+        <div class="container">
+            <form action="./form.php">
+                <table id="ticket" style="display: table;width: 100%;">
+              <tr>
+                <th>Ticket Type</th>
+                <th>Quantity</th>		
+                <th>Subtotal</th>
+              </tr>
+              <tr>
+                <td>Adult (name = ”SA”) </td>
+                <td><select name="SA">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Concession (name = ”SP”) </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Child (name = ”SC”)</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>First Class Adult (name = ”FA”) </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>First Class Child (name = ”FC”)</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Beanbag - 1 Person (name = ”B1”)</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Beanbag - 2 People (name = ”B2”</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Beanbag - 3 children (name = ”B3”) </td>
+                <td></td>
+                <td></td>
+              </tr>
+              
+              <tr>
+                <td>Total price </td>
+                <td></td>
+                <td><input type="submit" onclick="submit()" value="Get Ticket"></td>
+              </tr>
+            </table>
+            </form> 
+        </div>
+
+        </main>
+        
+        <footer>
+            
+        </footer>
+        
+    </body>
+    
+    
+    
+</html>

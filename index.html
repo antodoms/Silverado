@@ -5,7 +5,11 @@
     
     <head>
         <title>Silverado</title>
-        <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+        
+        
     </head>
     
     
@@ -14,21 +18,48 @@
         <header>
             <nav>
                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a hred="#">Bookings</a></li>
-                    <li><a href="#">Movies</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><b><a href="#">Home</a></b></li>
+                    <li hidden><b><a href="#">Bookings</a></b></li>
+                    <li><b><a href="./movies.html">Movies</a></b></li>
+                    <li><b><a href="#about">About</a></b></li>
+                    <li><b><a href="#">Contact</a></b></li>
                 </ul>
             </nav>
         </header>
         
         <main>
+            <div>
+                //changing images goes here
+            </div>
             
+            <div class="container">
+                <h2 class="MainPageHeadings">New Movies</h2>
+            </div>
+        
+            
+            <div class="container">
+                <h3 class="MainPageHeadings">Contact Us</h3>
+                <p>Name</p>
+                <input type="text" name="FirstName">
+                <p>Phone</p>
+                <input type="text" name="Phone">
+                <p>Email</p>
+                <input type="text" name="Email">
+                <a style="color: black; background-color: white; padding: 5px; font-size: 20px; font-family: Verdana; float: right">Submit</a>
+            </div>
         </main>
         
         <footer>
-            
+            <div id="about">
+            <ul style="text-align: center">
+                <li style="text-decoration: underline">Privacy Statement</li>
+                <li style="text-decoration: underline">Terms of Use</li>
+                <li style="display: block"><a href="https://www.google.com.au/maps/place/Queen+St+%26+Flinders+Ln,+Melbourne+VIC+3000/@-37.8176509,144.962536,19z/data=!4m2!3m1!1s0x6ad642b34655bfa1:0x3304f6319750b285">Located on the Corner of Flinders and Queen street</a></li>
+                <li>Telephone: 12345678</li>
+                <li>Email: Silverado@silverado.com</li>
+                <li style="display: block">&copy; Silverado corperation, all rights reserved. The Silverado logo, is a registered trademarked of the Silverado Corperation</li>
+            </ul>
+            </div>
         </footer>
         
     </body>
