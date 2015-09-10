@@ -18,39 +18,54 @@
         <header>
             <nav>
                <ul>
-                    <li><b><a href="#">Home</a></b></li>
-                    <li hidden><b><a href="#">Bookings</a></b></li>
+                    <li><b><a href="./">Home</a></b></li>
                     <li><b><a href="./movies.html">Movies</a></b></li>
-                    <li><b><a href="#about">About</a></b></li>
-                    <li><b><a href="#">Contact</a></b></li>
+                    <li><b><a href="./#about">About</a></b></li>
+                    <li><b><a href="./#contact">Contact</a></b></li>
                 </ul>
             </nav>
         </header>
         
         <main>
             <div>
-                //changing images goes here
+                <img class="container" src="./images/SilveradoLogo.png" style="width: 500px; height: 200px; display: block; margin: 0px auto"/>
+                <img src="http://static.tumblr.com/9d0687c9c1d5fbe21ca6451f42051dc6/tqsudhr/QUTn19gtd/tumblr_static_massena01.jpg" style="width: 100%; height: 100%"/>
             </div>
             
+            <div id="about">
             <div class="container">
-                <h2 class="MainPageHeadings">New Movies</h2>
+                <h2 class="MainPageHeadings">About</h2>
+                <p style="font-family: Verdana; font-size: 20px">Silverado Cinema is one of the leading cinemas in Australia. We offer movies in both 2d and 3d, and have the latest
+dolbi digital and surround sound system installed in all of our cinemas, for you enjoyment. We also offer 
+purchasing of ticket both online and on-site, with a variety of payment methods to choose from. Relax in our 
+new refurbished facility, with brand new seats, screens, and projectors. We have a rich history of providing great 
+service, to both our previous customers and out new ones.</p>
+                 
+
             </div>
         
-            
+            <div id="contact">
             <div class="container">
                 <h3 class="MainPageHeadings">Contact Us</h3>
-                <p>Name</p>
-                <input type="text" name="FirstName">
-                <p>Phone</p>
-                <input type="text" name="Phone">
-                <p>Email</p>
-                <input type="text" name="Email">
-                <a style="color: black; background-color: white; padding: 5px; font-size: 20px; font-family: Verdana; float: right">Submit</a>
+                <form method='post' action='http://titan.csit.rmit.edu.au/~e54061/wp/testcontact.php' >
+                    
+                    <p class="contact">Email:</P>
+                    <input type="email" name='email' placeholder="Example@mail.com" style="color: black" required> </p>
+                    <p class="contact">Subject:</p> 
+                    <select name='subject' style="color: black">
+                       <option value="General Enquiry">General Enquiry</option>
+                       <option value="Group and Corporate bookings">Group and Corporate bookings</option>
+                       <option value="Suggestions and Complaints">Suggestions and Complaints</option>
+                    </select>
+                    <textarea name='message' rows="10" cols="70" placeholder="Write datails here" style="display: block; margin-top: 20px; color: black;" required></textarea>
+                    <input type="submit" value="Submit" style="background-color: white; color: black; padding: 5px; margin-top: 10px; width: 200px">
+                    
+                </form>
+            </div>
             </div>
         </main>
         
         <footer>
-            <div id="about">
             <ul style="text-align: center">
                 <li style="text-decoration: underline">Privacy Statement</li>
                 <li style="text-decoration: underline">Terms of Use</li>
