@@ -11,12 +11,35 @@ var datareset = [["1:00 pm", "1:00 pm", "1:00 pm", "1:00 pm", "1:00 pm", "12:00 
 // JQuerry Starts Here  
 $(document).ready(function(){
     $("table").hide();
+    checkCookie();
     
-    showtime(getCookie("movie"));
     loadtheatre();
     updateprice();
     resettheatre();
     
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 250) {
+            $('header').addClass('magic');
+        } else {
+            $('header').removeClass('magic');
+        }
+    });
+
+    $("nav ul .mobile").click(function(){
+        $("nav.mobile").toggleClass('show');
+    });
+    
+    $("#list .movies").on("click", function( e ) {
+
+        e.preventDefault();
+
+        $("body, html").animate({ 
+            scrollTop: $('#description').offset().top 
+        }, 300);
+
+    });
+   
+   
     $(".movies").click(function(){
         $(".movies").removeClass("enabled");
         $(this).addClass("enabled");
@@ -27,16 +50,20 @@ $(document).ready(function(){
         $("#ticket").hide();
     });
     
+    
     $("#datetime").on("click", "button.timebutton", function(){
+        $("button.timebutton").removeClass("active");
+        $(this).addClass("active");
         $("#ticket").show();
        $('html, body').animate({
         scrollTop: $("#ticket").offset().top
-    }, 1000);
+    }, 500);
     });
     
-    $("#list .movies").click(function(){
+    $("#datemob").on("click", "button.timebutton", function(){
+        $("#ticket").show();
        $('html, body').animate({
-        scrollTop: $("#datetime").offset().top
+        scrollTop: $("#ticket").offset().top
     }, 500);
     });
     
@@ -96,6 +123,9 @@ return {
 /* ********************************************************** */
 function checkCookie() {
     var movie=getCookie("movie");
+        if(movie!=null){
+            movie = movie.trim(';')[0];
+        }
     if (movie == 1 || movie ==2 || movie == 3 || movie==4) {
         showtime(movie);
         $("table").show();
@@ -105,11 +135,11 @@ function checkCookie() {
             $("#ticket").show();
             $('html, body').animate({
                 scrollTop: $("#ticket").offset().top
-            }, 2000);
+            }, 1000);
         }
     }
     else{
-        document.cookie = "";
+        showtime(1);
     }
 }
 
@@ -255,11 +285,11 @@ function updateprice(){
         var val = seattype.items().length * rate[getCookie("price") -1][i-1];
         total = total + val;
             
-       table[i].cells[2].innerHTML = "<input type=\"hidden\" name=\""+seats[i-1][0]+"\" value="+ seattype.items().length +"> AUD $" + val;
+       table[i].cells[2].innerHTML = "<input type=\"hidden\" name=\""+seats[i-1][0]+"\" value="+ seattype.items().length +"> AUD $" + parseFloat(val).toFixed(2);
     }
    var moviename = movies[ (getCookie('movie').trim(';')[0] - 1)];
     var dayname = getday(getCookie('time'));
-    table[9].cells[1].innerHTML = "<input type=\"hidden\" name=\"price\" value=\"" + parseFloat(total).toFixed(2) + "\"><input type=\"hidden\" name=\"movie\" value=\""+ moviename +"\"><input type=\"hidden\" name=\"day\" value=\""+ dayname +"\"><input type=\"hidden\" name=\"time\" value=\""+ gettime(getCookie('time')) + "\"> AUD $"+ total;
+    table[9].cells[1].innerHTML = "<input type=\"hidden\" name=\"price\" value=\"" + parseFloat(total).toFixed(2) + "\" min=\"1.00\" max=\"100000.00\" required><input type=\"hidden\" name=\"movie\" value=\""+ moviename +"\"><input type=\"hidden\" name=\"day\" value=\""+ dayname +"\"><input type=\"hidden\" name=\"time\" value=\""+ gettime(getCookie('time')) + "\"> AUD $"+ parseFloat(total).toFixed(2);
     }}
 
 function getday(number){
@@ -304,9 +334,9 @@ function showdescription(type){
 
 function showtime(type) {
     
-    if(type!=1 || type != 2 || type !=3 || type!=4){
-        type=1;
-    }
+   
+    
+    
   updateprice();
   showdescription(type);
   
@@ -314,7 +344,7 @@ function showtime(type) {
     selector[type-1].classList.add("enabled");
   
   var time =[];
-  
+  time=null;
   if(type == 1){
      time = data[0];
   }
@@ -332,6 +362,9 @@ function showtime(type) {
 
     // console.log(time); 
     var table = document.getElementById('datetime').rows;
+    var table2 = document.getElementById('datemob').rows;
+    
+     
     for( var i=0; i< time.length; i++){
         
        var x= parseInt(time[i] / 7) + 1;
@@ -340,28 +373,27 @@ function showtime(type) {
            y = ( (time[i]-1) % 7) + 1;
            x -=1;
        } 
-       var text = table[x].cells[y-1].innerHTML;
+       var text = datareset[x-1][y-1];
        
-       table[x].cells[y-1].innerHTML ="<button class=\"timebutton\" onclick=\"selectmode("+time[i]+");\">"+text +"</button>";
-       
+       table[1].cells[y-1].innerHTML ="<button class=\"timebutton\" onclick=\"selectmode("+time[i]+");\">"+text +"</button>";
+       table2[y-1].cells[1].innerHTML ="<button class=\"timebutton\" onclick=\"selectmode("+time[i]+");\">"+text +"</button>";
     }
 
 }
 
 
 function resettable() {
+    
     var table = document.getElementById('datetime').rows;
-    for( var i=1; i< table.length; i++){
-        
-        for( var j=1; j<= table[i].cells.length; j++){
-            
-       table[i].cells[j-1].innerHTML = datareset[i-1][j-1];
-       
-        }
-    }
+    var table2 = document.getElementById('datemob').rows;
     
-
-    
+     for( var i=0; i< 7; i++){
+         table2[i].cells[1].innerHTML = "-";
+     }
+     
+     for( var i=0; i< 7; i++){
+         table[1].cells[i].innerHTML = "-";
+     }
     
 }
 

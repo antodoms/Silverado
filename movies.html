@@ -5,7 +5,7 @@
         <title>Silverado Movies</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+        <link rel="stylesheet" type="text/css" href="./css/stylesheet.css" />
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="./js/cookie.js"></script>
         <script src="./js/movies.js"></script>
@@ -14,22 +14,32 @@
     
    <body onload="resettable(); checkCookie();">
         
-        <header>
+       <header>
             <nav>
-               <ul>
-                    <li><b><a href="./">Home</a></b></li>
-                    <li><b><a href="./movies.html">Movies</a></b></li>
-                    <li><b><a href="./#about">About</a></b></li>
-                    <li><b><a href="./#contact">Contact</a></b></li>
-                </ul>
+              <img class="container" src="./images/logo.png" alt="logo">
+              <div class="container">   
+                  <ul>
+                      <li class="desktop"><b><a href="./">Home</a></b></li>
+                      <li class="desktop active"><b><a href="./movies.html">Book Tickets</a></b></li>
+                      <li class="desktop"><b><a href="./price.html">Price List</a></b></li>
+                      <li class="desktop"><b><a href="./contact.html">Contact</a></b></li>
+                      <li class="mobile" style="float: right; margin-right: 15px; margin-top: -20px;"><b>&#9776;</b></li>
+                  </ul>
+              </div>
             </nav>
-        </header>
+            <nav class="mobile">
+                    <b><a href="./">Home</a></b>
+                    <b><a class="active"  href="./movies.html">Book Tickets</a></b>
+                    <b><a href="./price.html">Price List</a></b>
+                    <b><a href="./contact.html">Contact</a></b>
+            </nav>
+     </header>
         
         <main>
         
         <div id="list" class="container">
           <br>
-            <h2>NOW PLAYING</h2>
+            <h2 class="MainPageHeadings">NOW PLAYING</h2>
             <div class="movies"  onclick="resettable(); deleteAllCookies(); showtime(1);">
                 <img class="thumbnail" src="./images/thumbnails/avengers.png" alt="thumbnail" />
                 <h1>Avengers</h1>
@@ -53,7 +63,7 @@
             </div>
         </div>
           <div id="description" class="container">
-            <h2>DESCRIPTION</h2>
+            <h2 class="MainPageHeadings">DESCRIPTION</h2>
              <div class="description" id="1" hidden>
                <img class="age" src="./images/ratings/PG.png" alt="ageguidance" />
                 <p> <b>IMDB Rating</b> - 8.1</p>
@@ -85,9 +95,36 @@
                 <p> <b>Genre</b> - Action , Thriller, Suspense, Sci-Fi</p>
                 <p>While all of these things (script, action, special effects and so on and so forth) are important... it's no good having them spot on if you don't have a cast that just isn't right. But fortunately, for fans and for the actors involved, Whedon's cast not only work brilliantly together but are perfectly comfortable wailing on each other and threatening each other all day and night.</p>
             </div>
-            
-          </div>
-         <div class="container">
+             <table id="datemob">
+             <tr>
+               <th>Monday</th>
+               <td></td>
+             </tr>
+             <tr>
+               <th>Tuesday</th>
+               <td></td>
+             </tr>
+             <tr>
+               <th>Wednesday</th>
+               <td></td>
+             </tr>
+             <tr>
+               <th>Thursday</th>
+               <td></td>
+             </tr>
+             <tr>
+               <th>Friday</th>
+               <td></td>
+             </tr>
+             <tr>
+               <th>Saturday</th>
+               <td></td>
+             </tr>
+             <tr>
+               <th>Sunday</th>
+               <td></td>
+             </tr>
+           </table>
             <table id="datetime">
               <tr>
                 <th>Monday</th>
@@ -107,34 +144,11 @@
                 <td></td>
                 <td></td>
               </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              
             </table>
+          </div>
+         <div class="container">
+          
         </div>
         
         <div class="container">
@@ -304,6 +318,7 @@
             <button id="C12">C12</button>
             <br>
           </div>
+          <div style="margin-left: 40%; margin-right: 40%;  background-color: white;color: black;font-weight: bolder;text-align: -webkit-center;padding: 20px;" onclick="document.getElementById('theatre').style.display='none';document.getElementById('fade').style.display='none';">OK</div>
         </div>
         <div id="fade" class="black_overlay" onclick="document.getElementById('theatre').style.display='none';document.getElementById('fade').style.display='none';"></div>
 
@@ -311,15 +326,34 @@
         </main>
         
          <footer>
-            <ul style="text-align: center">
-                <li style="text-decoration: underline">Privacy Statement</li>
-                <li style="text-decoration: underline">Terms of Use</li>
-                <li style="display: block"><a href="https://www.google.com.au/maps/place/Queen+St+%26+Flinders+Ln,+Melbourne+VIC+3000/@-37.8176509,144.962536,19z/data=!4m2!3m1!1s0x6ad642b34655bfa1:0x3304f6319750b285">Located on the Corner of Flinders and Queen street</a></li>
-                <li>Telephone: 12345678</li>
-                <li>Email: Silverado@silverado.com</li>
-                <li style="display: block">&copy; Silverado corperation, all rights reserved. The Silverado logo, is a registered trademarked of the Silverado Corperation</li>
-            </ul>
+            <div class="col30">
+                <h2>Contact Us</h2>
+                <p>Anto Dominic - s3553172</p>
+                <p>Hudson Cassidy - s3539413</p>
+                <br>
+                <p>Telephone: 12345678</p>
+                <p>Email: Silverado@silverado.com</p>
             </div>
+               
+            <div class="col30">
+                <h2>Support Us</h2>
+                <ul>
+                    <li><a href="">Facebook</a></li>
+                    <li><a href="">Google+</a></li>
+                    <li><a href="">BookMyShow</a></li>
+                </ul>
+            </div>
+            
+            <div class="col30">
+                <h2>Others</h2>
+                <ul>
+                    <li><a href="">Career</a></li>
+                    <li><a href="">Price List</a></li>
+                    <li><a href="">Offers</a></li>
+                </ul>
+            </div>
+            
+            <div class="container">&copy; Silverado corperation, all rights reserved. The Silverado logo, is a registered trademarked of the Silverado Corperation</div>
         </footer>
         
     </body>
