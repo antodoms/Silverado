@@ -30,7 +30,7 @@ $("nav ul .mobile").click(function(){
 function redirecthome(number){
     deleteAllCookies();
     setCookie('movie',number,1);
-    window.location = "/movies.html";
+    window.location = "./movies.html";
 }
 
 function setCookie(cname, cvalue, exdays) {
