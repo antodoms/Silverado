@@ -10,13 +10,14 @@ var datareset = [["1:00 pm", "1:00 pm", "1:00 pm", "1:00 pm", "1:00 pm", "12:00 
 
 // JQuerry Starts Here  
 $(document).ready(function(){
+    
     $("table").hide();
     checkCookie();
     
     loadtheatre();
     updateprice();
     resettheatre();
-    
+    $(".seathead").hide();
     $(window).scroll(function() {
         if ($(window).scrollTop() > 250) {
             $('header').addClass('magic');
@@ -27,6 +28,10 @@ $(document).ready(function(){
 
     $("nav ul .mobile").click(function(){
         $("nav.mobile").toggleClass('show');
+    });
+    
+    $(".description button").click(function(){
+        $(this).parent().toggleClass('show');
     });
     
     $("#list .movies").on("click", function( e ) {
@@ -43,7 +48,7 @@ $(document).ready(function(){
     $(".movies").click(function(){
         $(".movies").removeClass("enabled");
         $(this).addClass("enabled");
-        
+        $(".seathead").hide();
         $("#datetime").show();
         $("#datetime").animate({width: "95%" }, "fast");
         $("#datetime").animate({width: "100%" }, "slow");
@@ -54,6 +59,7 @@ $(document).ready(function(){
     $("#datetime").on("click", "button.timebutton", function(){
         $("button.timebutton").removeClass("active");
         $(this).addClass("active");
+        $(".seathead").show();
         $("#ticket").show();
        $('html, body').animate({
         scrollTop: $("#ticket").offset().top
@@ -118,6 +124,8 @@ return {
     }
 }} 
 // CookieList Generator Code ends here
+
+//The below cookie function is used from : http://www.w3schools.com/js/js_cookies.asp
 
 // Adding Single Cookies Here
 /* ********************************************************** */
@@ -199,6 +207,7 @@ function loadid(element) {
 
 }
 
+//Function to select or deselect a theatre seat
 function toggletheatre(dataid){
     var seatlist = new cookieList("selectedseat");
     var seattype = new cookieList(getCookie("seattype"));
@@ -218,6 +227,7 @@ function toggletheatre(dataid){
     return;
 }
 
+// Function to load the theatre when add seats is pressed
 function loadtheatre(){
     
     if(getCookie("selectedseat") != null){
@@ -230,6 +240,7 @@ function loadtheatre(){
     }
 }
 
+// reset the theatre value in html
 function resettheatre(){
     for(var i=0; i< ticketcheck.length;i++){
         
@@ -240,6 +251,7 @@ function resettheatre(){
     }
 }
 
+// Fubction to set the theatre value as enabled in html
 function settheatre(typeid){
     setCookie("seattype", typeid , 1);
     
@@ -273,6 +285,7 @@ function settheatre(typeid){
     
 }
 
+//update the price of table whenever the function is called
 function updateprice(){
     var total = 0.00;
     var table = document.getElementById('ticket').rows;
@@ -290,8 +303,18 @@ function updateprice(){
    var moviename = movies[ (getCookie('movie').trim(';')[0] - 1)];
     var dayname = getday(getCookie('time'));
     table[9].cells[1].innerHTML = "<input type=\"hidden\" name=\"price\" value=\"" + parseFloat(total).toFixed(2) + "\" min=\"1.00\" max=\"100000.00\" required><input type=\"hidden\" name=\"movie\" value=\""+ moviename +"\"><input type=\"hidden\" name=\"day\" value=\""+ dayname +"\"><input type=\"hidden\" name=\"time\" value=\""+ gettime(getCookie('time')) + "\"> AUD $"+ parseFloat(total).toFixed(2);
-    }}
+    }
+    
+    if(total > 0.00 ){
+        document.getElementById('formsubmit').disabled = false;
+    }
+    else {
+        document.getElementById('formsubmit').disabled = true;
+    }
+    
+}
 
+//funtion to get day after clicking the datetime table
 function getday(number){
     number = number.trim(';');
     number = number[0];
@@ -308,6 +331,7 @@ function getday(number){
     }
 }
 
+//function to get time after clicking the datetime table
 function gettime(number){
     number = number.trim(';');
     number = number[0];
@@ -324,6 +348,7 @@ function gettime(number){
     }
 }
 
+// display the description according to selected movies
 function showdescription(type){
     for(i=1;i<=4;i++){
         document.getElementById(i).hidden = true;
@@ -331,12 +356,8 @@ function showdescription(type){
     document.getElementById(type).hidden = false;
 }
 
-
+// display the time chart according to selected movies
 function showtime(type) {
-    
-   
-    
-    
   updateprice();
   showdescription(type);
   
@@ -381,7 +402,7 @@ function showtime(type) {
 
 }
 
-
+//reset the datetime table
 function resettable() {
     
     var table = document.getElementById('datetime').rows;
@@ -397,6 +418,7 @@ function resettable() {
     
 }
 
+//resetting the seat
 function resetseats(){
     
     for(var i=0; i < ticketcheck.length ; i++){
@@ -410,7 +432,7 @@ function resetseats(){
     }
 }
 
-
+//setting the cookie for time and price
 function selectmode(type) {
     
     //console.log(type);

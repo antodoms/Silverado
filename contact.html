@@ -25,7 +25,7 @@
                       <li class="desktop"><b><a href="./movies.html">Book Tickets</a></b></li>
                       <li class="desktop"><b><a href="./price.html">Price List</a></b></li>
                       <li class="desktop active"><b><a href="./contact.html">Contact</a></b></li>
-                      <li class="mobile" style="float: right; margin-right: 15px; margin-top: -20px;"><b>&#9776;</b></li>
+                      <li class="mobile"><b>&#9776;</b></li>
                   </ul>
               </div>
             </nav>
@@ -40,28 +40,30 @@
         <main>
             <div id="contact">
             <div class="container">
-                <h3 class="MainPageHeadings" style="margin-bottom: 15px">Contact Us</h3>
+                <h2>Contact Us</h2>
+                
                 <form method='post' action='http://titan.csit.rmit.edu.au/~e54061/wp/testcontact.php'>
-                    
+                   
                     <p class="contact">Email:</p>
                     <p><input type="email" name='email' placeholder="Example@mail.com" style="color: black" required></p>
                     <p class="contact">Subject:</p> 
-                    <p><select name='subject' style="color: black">
+                    <p><select name='subject'>
                        <option value="General Enquiry">General Enquiry</option>
                        <option value="Group and Corporate bookings">Group and Corporate bookings</option>
                        <option value="Suggestions and Complaints">Suggestions and Complaints</option>
                     </select></p>
-                    <textarea name='message' rows="10" cols="70" placeholder="Write datails here" style="display: block; margin-top: 20px; color: black;" required></textarea>
-                    <input type="submit" value="Submit" style="background-color: white; color: black; padding: 5px; margin-top: 10px; width: 200px">
+                    <textarea name='message' rows="10" cols="70" placeholder="Write datails here" required></textarea>
+                    <input type="submit" value="Submit">
                     
                 </form>
+                
             </div>
             </div>
         </main>
         
-        <footer>
+       <footer>
             <div class="col30">
-                <h2>Contact Us</h2>
+                <h2 style="text-decoration: none"><a href="./contact.html">Contact Us</a></h2>
                 <p>Anto Dominic - s3553172</p>
                 <p>Hudson Cassidy - s3539413</p>
                 <br>
@@ -87,7 +89,7 @@
                 </ul>
             </div>
             
-            <div class="container">&copy; Silverado corperation, all rights reserved. The Silverado logo, is a registered trademarked of the Silverado Corperation</div>
+            <div class="container" style="text-align: center; font-size: 15px">&copy; Silverado corperation, all rights reserved. The Silverado logo, is a registered trademarked of the Silverado Corperation</div>
         </footer>
         
     </body>

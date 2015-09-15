@@ -38,30 +38,51 @@
      </header>
         
         <main>
-                <img src="./images/empty-cinema.jpg" alt="" style="width: 100%; height: 100%; margin-top: -53px"/>
-            
-            
-            <div class="container" id="newMovies">
-                <h2 class="MainPageHeadings">Currently Playing</h2>
-                <img class="movies" src="./images/thumbnails/avengers.png" id="Avng"/>
-                <img class="movies" src="./images/thumbnails/incredibles.png" id="Inred"/>
-                <img class="movies" src="./images/thumbnails/jurasic.png" id="Jrsc"/>
-                <img class="movies" src="./images/thumbnails/lifeofpi.png" id="Lop"/>
+            <div id="carousel">
+                <img class="active" src="./images/empty-cinema.jpg" alt="" />
             </div>
-            
-            
-            <div id="about">
+                
+             <div id="about">
             <div class="container">
-                <h2 class="MainPageHeadings">About</h2>
-                <p style="font-family: Verdana; font-size: 20px">Silverado Cinema is one of the leading cinemas in Australia. We offer movies in both 2d and 3d, and have the latest
-dolbi digital and surround sound system installed in all of our cinemas, for you enjoyment. We also offer 
-purchasing of ticket both online and on-site, with a variety of payment methods to choose from. Relax in our 
-new refurbished facility, with brand new seats, screens, and projectors. We have a rich history of providing great 
-service, to both our previous customers and out new ones.</p>
-                 
+                <h1>WHATS NEW ?</h1>
+                <div class="item">
+                <img src="./images/details/3d.jpg" alt="" />
+                <p>New 3D Projection Technology</p>
+                </div>
+                <div class="item">
+                <img src="./images/details/seats.jpg" alt="" />
+                <p>Upgraded New Seats with an addition of 12 Beanbag Seats</p>
+                </div>
+                <div class="item">
+                <img src="./images/details/dolby.jpg" alt="" />
+                <p>New Dolby Lighting and Sounds</p>
+                 </div>
 
             </div>
             </div>
+            
+            <div class="container" id="newMovies">
+                <h1>CURRENTLY PLAYING</h1>
+                <div>
+                    <img class="movies" src="./images/thumbnails/avengers.png" id="1" />
+                    <button onclick="redirecthome(1);">Book Now</button>
+                </div>
+                <div>
+                    <img class="movies" src="./images/thumbnails/incredibles.png" id="2" />
+                    <button onclick="redirecthome(2);">Book Now</button>
+                </div>
+                <div>
+                    <img class="movies" src="./images/thumbnails/FaultInOurStars.png" id="3" />
+                    <button onclick="redirecthome(3);">Book Now</button>
+                </div>
+                <div>
+                    <img class="movies" src="./images/thumbnails/lifeofpi.png" id="4" />
+                    <button onclick="redirecthome(4);">Book Now</button>
+                </div>
+            </div>
+            
+            
+           
         </main>
         
         <footer>

@@ -18,6 +18,21 @@ a {
     color: black;
 }
 
+h2 {
+    font-family: Futura;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+h1 {
+    font-family: Futura;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    text-shadow: 2px 3px 3px rgb(142, 141, 141);
+}
+
 nav ul a {
     text-decoration: none;
     color: white;
@@ -49,6 +64,42 @@ nav .active a {
 }
 
 
+#carousel img{
+    margin-top: 0px;
+    width:100%;
+    height:100%;
+}
+
+.item img {
+    width: 95%;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    float: left;
+    margin: 10px;
+    padding: 10px;
+}
+
+.item {
+    width: 30%;
+    position: relative;
+    padding: 10px;
+    background-color: rgba(128, 128, 128, 0.33);
+    margin: 10px;
+    box-sizing: border-box;
+    display: inline-block;
+}
+.item p {
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 0px;
+    width: 100%;
+    display: inline-block;
+    text-align: -webkit-center;
+    font-family: serif;
+    background-color: rgba(0, 0, 0, 0.44);
+    padding: 10px;
+}
 
 .magic{
     z-index:100;
@@ -136,6 +187,65 @@ nav.mobile a:hover {
     padding-left: 30px;
 }
 
+#list .movies h2 {
+    background-color: rgba(169, 166, 166, 0.23);
+    padding: 5px;
+    font-size: 20px;
+}
+
+#list .movies.enabled h2 {
+    background-color: #363838;
+    padding: 5px;
+}
+
+#newMovies div {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 24%;
+}
+
+#newMovies button {
+    margin: 20px;
+    padding: 10px;
+    background-color: #2C70B9;
+    width: 74%;
+    text-transform: uppercase;
+    text-align: -webkit-center;
+    cursor: pointer;
+    color: white;
+    box-shadow: 1px 1px 1px 4px #E2DDDD;
+}
+
+#newMovies button:hover{
+    background-color: #063363;
+    color: white;
+    border-radius: 10px;
+}
+
+.show .more {
+    display: block;
+}
+
+.more {
+    display: none;
+}
+
+.description button {
+     margin: 20px;
+    padding: 10px;
+    background-color: #2C70B9;
+    text-transform: uppercase;
+    text-align: -webkit-center;
+    cursor: pointer;
+    color: white;
+    box-shadow: 1px 1px 1px 4px #E2DDDD;
+}
+
+.description button:hover {
+     background-color: #063363;
+    color: white;
+    border-radius: 10px;
+}
 .movies {
     font-family: Verdana;
     text-align: center;
@@ -161,7 +271,7 @@ nav.mobile a:hover {
 
 .movies.enabled {
     border: 3px solid rgba(73, 73, 73, 0);
-    background-color: rgba(128, 128, 128, 0.7);
+    background-color: rgba(255, 255, 255, 0.24);
 }
 
 .movies.enabled h1 {
@@ -177,7 +287,7 @@ nav.mobile a:hover {
 
 #description {
     padding: 20px;
-    background-color: rgba(128, 128, 128, 0.7);
+    background-color: rgba(255, 255, 255, 0.24);
     width: 77%;
     margin-top: -20px;
     margin-left: 10%;
@@ -199,11 +309,10 @@ button.timebutton {
 }
 
 button.timebutton:hover, button.timebutton.active {
-    background-color: white;
-    color: black;
-    box-shadow: 4px 0px 10px 8px #474747;
-    border-radius: 10px;
+    background-color: #04376F;
+    color: white;
     border: 1px solid #B6B7B2;
+    border-radius: 10px;
 }
 .thumbnail {
     width: 100%;
@@ -292,19 +401,27 @@ td button {
     
 }
 
+input#formsubmit:disabled {
+    background-color: grey;
+}
 .container {
     margin: 0 auto;
     width: 80%;
     padding-bottom: 20px;
 }
 
+input[type="submit"]:hover {
+    background-color: red;
+}
+
 input[type="submit"] {
-    background-color: green;
+    background-color: #9C0E0E;
     border: none;
-    padding: 5px;
+    padding: 10px;
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
     text-transform: uppercase;
+    box-shadow: 1px 1px 8px grey;
 }
 
 #theatre {
@@ -393,9 +510,8 @@ input[type="submit"] {
 }
 
 #ticket div:hover {
-    background-color: white;
-    color: black;
-    box-shadow: 3px 0px 20px 15px #464444;
+    background-color: #063363;
+    color: white;
     border-radius: 10px;
 }
 
@@ -450,17 +566,18 @@ input[type="submit"] {
 
 input {
     line-height: normal;
-    width: 50%;
+    width: 90%;
     padding: 10px;
     border-radius:5px;
 }
 
 select {
-    width: 50%;
+    width: 92%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    height: 34px;
+    height: 50px;
+    color: black;
 }
 option {
     padding: 10px;
@@ -469,7 +586,7 @@ option {
 }
 textarea {
     overflow: auto;
-    width: 50%;
+    width: 90%;
     padding: 10px;
     font-size: 18px;
     border: 1px solid #ccc;
@@ -493,6 +610,12 @@ textarea {
     width: 300px;
     height: 300px;
 }
+
+#contact input[type="submit"] {
+    margin: 20px;
+    width: 57%;
+}
+
 
 footer ul li {
     color: white;
@@ -557,6 +680,10 @@ footer h2 {
     text-align: center;
 }
 
+#newMovies img {
+    width: 100%;
+}
+
 @media only screen and (min-width: 350px) {
   .container {
     margin: 0 auto;
@@ -581,7 +708,9 @@ footer h2 {
 
 nav ul .mobile {
     display: inline-block;
-    /* float:right; */
+    float: right; 
+    margin-right: 15px; 
+    margin-top: -20px;
 }
 
 nav.mobile {
@@ -625,6 +754,19 @@ nav.mobile {
     box-sizing: border-box;
     display: inline-block;
     margin: 0px;
+}
+
+#contact {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.item {
+    width:80%;
+}
+
+#newMovies div {
+    width: 90%;
 }
 
 }
@@ -708,6 +850,19 @@ nav.mobile {
     margin: 0px;
 }
 
+#contact {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.item {
+    width: 28%;
+}
+
+#newMovies div {
+    width: 23%;
+}
+
 }
 /* portrait tablets, portrait iPad, e-readers
 (Nook/Kindle), landscape 800x480 phones (Android)
@@ -784,6 +939,19 @@ nav.mobile {
     box-sizing: border-box;
     display: inline-block;
     margin: 1px;
+    
+    .item {
+    width:40%;
+}
+
+#newMovies div {
+    width: 48%;
+}
+}
+
+#contact {
+    width: 95%;
+    margin: 0 auto;
 }
  }
  /* iPads (landscape) */
@@ -860,6 +1028,19 @@ nav.mobile {
     margin: 12px;
 }
 
+#contact {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.item {
+    width:30%;
+}
+
+#newMovies div {
+    width: 48%;
+}
+
  }
  /* big landscape tablets, laptops and desktops */
  @media only screen and (min-width: 1025px) {
@@ -934,7 +1115,14 @@ nav.mobile {
     margin: 12px;
 }
 
+#contact {
+    width: 70%;
+    margin: 0 auto;
+}
 
+#newMovies div {
+    width: 24%;
+}
  }
  
  /* hi-res laptops and desktops */
@@ -1010,4 +1198,12 @@ nav.mobile {
     margin: 12px;
 }
 
+#contact {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#newMovies div {
+    width: 24%;
+}
  }
