@@ -720,6 +720,7 @@ nav.mobile {
 
 #datemob {
      display: table-cell;
+     width: 100%;
 }
 
 
@@ -796,6 +797,7 @@ nav.mobile {
  
  #datemob {
      display: inline-table !important;
+     width: 100%;
 }
 
 
@@ -906,6 +908,7 @@ nav.mobile {
 
 #datemob {
      display: table !important;
+     width: 100%;
 }
 
 
@@ -940,23 +943,24 @@ nav.mobile {
     box-sizing: border-box;
     display: inline-block;
     margin: 1px;
-    
-    .item {
+}
+
+.item {
     width:40%;
 }
 
 #newMovies div {
     width: 48%;
 }
-}
+
 
 #contact {
     width: 95%;
     margin: 0 auto;
 }
- }
+}
  /* iPads (landscape) */
- @media only screen and (min-width: 800px) {
+ @media only screen and (min-width: 850px) {
      
      .container {
     margin: 0 auto;
@@ -992,12 +996,13 @@ nav.mobile {
 }
 
 #datemob {
-    display:none !important;
+     display: table !important;
+     width: 100%;
 }
 
 
 #datetime {
-    display: table !important;
+    display:none !important;
 }
 
 
@@ -1086,6 +1091,7 @@ nav.mobile {
 
 #datetime {
      display: table !important;
+     width: 80%;
 }
 
  #theatre{
