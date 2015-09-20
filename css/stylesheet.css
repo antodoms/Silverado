@@ -1,13 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Slabo+27px|Oswald|Lora);
+
 body {
     background-color: black;
     color: white;
     background-image: url('../images/background2.jpg');
-    font-family: Verdana;
+    font-family: 'Slabo 27px', serif;
     font-size: 15px;
     text-align: justify;
 }
 p{
-    font-family: Verdana;
+    font-family: 'Oswald', sans-serif;
     font-size: 20px;
     text-align: justify;
 }
@@ -19,13 +21,13 @@ a {
 }
 
 h2 {
-    font-family: Futura;
+    font-family: 'Lora', serif;
     font-size: 30px;
     font-weight: bold;
 }
 
 h1 {
-    font-family: Futura;
+    font-family: 'Lora', serif;
     font-size: 40px;
     font-weight: bold;
     color: white;
@@ -37,7 +39,7 @@ nav ul a {
     text-decoration: none;
     color: white;
     padding: 20px;
-    font-family: Verdana;
+    font-family: 'Oswald', sans-serif;
 }
 
 
