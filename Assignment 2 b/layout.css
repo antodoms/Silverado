@@ -327,8 +327,8 @@ footer a:hover { color: crimson; }
 
 .moviepanelextra section2 {
 	width: auto;
-	display: flex;
-	flex-flow: row wrap;
+	//display: flex;
+	//flex-flow: row wrap;
 	padding: 10px;
 }
 

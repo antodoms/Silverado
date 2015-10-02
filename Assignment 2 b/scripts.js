@@ -23,6 +23,7 @@ $(document).ready(function () {
 	$(".moviepanelextra").hide();
     
     var movies = [];
+	var times = [];
     
     $.ajax({
         dataType: "json",
@@ -30,15 +31,8 @@ $(document).ready(function () {
         //data: { get_param: "value" },
         success: function (data) {
             $.each(data, function(index, element) {
-                /*
-                $("nav").append($("<div>", {
-                    text: element.title
-                }));
-                */
-                //alert(element.title);
-                //movies.push(element.title);
-				
-				/* Replace any apostrophe's in the description */
+
+				/* Replace any quote marks in the strings to prevent conflict */
 				var desc1 = element.description[0].replace(/\"/g, '&#34');
 				var desc2 = element.description[1].replace(/\"/g, '&#34');
 				var desc3 = element.description[2].replace(/\"/g, '&#34');
@@ -49,7 +43,6 @@ $(document).ready(function () {
 				//alert(element.screenings['Monday']);
 				var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 			
-				var times = [];
 				var times_string = "";
 				
 				days.forEach(function (day) {
@@ -58,7 +51,8 @@ $(document).ready(function () {
 					if (time !== undefined)
 						times.push(day + " : " + time);
 					
-					times_string = times_string + day + " " + time + "<br><br>";
+					if (time !== undefined)
+						times_string = times_string + day + " " + time + "<br><br>";
 				});
 				
 		
@@ -141,28 +135,32 @@ $(document).ready(function () {
 		return false;
 	});
 
+	function sessionsToButtons(movie) {
+		
+		var buttons = "";
+		
+		var sessions = movie.attr("data-times").substring(0, movie.attr("data-times").length - 8).split("<br><br>");
+		
+		sessions.forEach( function(session) {
+			buttons = buttons + '<div class="booktickets">' + session + '</div>';
+		});
+		
+		return buttons;	
+	}
+	
 	function createMoviePanelExtra(movie, pos, index) {
 		$("#allmovies>div:nth-child("+ (pos + index + 1) +")").after(
-			/*
-			'<div class="moviepanelextra noselect">' +
-				'<div id="rating"><img src=ratings/' + movie.attr("data-rating") + '.jpg></div>' +
-				'<div id="title">' + movie.attr("data-title") + '</div>' +
-				'<div id="desc">' + movie.attr("data-desc") + '</div>' +
-				'<div id="times">' + movie.attr("data-times") + '</div>' +
-				'<div class="booktickets">Book Tickets</div>' +
-			'</div>');
-			*/
+			
 			'<div class="moviepanelextra noselect">' +
 				'<section1>' +
 					'<div id="title">' + movie.attr("data-title") + '</div>' +
-					'<div id="rating"><img src=' + movie.attr("data-rating") + '></div>' +
 					'<div id="summary">' + movie.attr("data-summary") + '</div>' +
 					'<div id="description">' + movie.attr("data-description") + '</div>' +
 					'<div id="trailer"><video width="480" height="320" controls> <source src="' + movie.attr("data-trailer") + '" type="video/mp4"></video></div>' +
 				'</section1>' +
 				'<section2>' +
-					'<div id="times"><h2>Showing Times:</h2>' + movie.attr("data-times") + '</div>' +
-					'<div class="booktickets">Book Tickets</div>' +
+					'<div id="rating"><img src=' + movie.attr("data-rating") + '></div>' +
+					'<div id="times"><h2>Showing Times:</h2>' + sessionsToButtons(movie) + '</div>' +
 				'</section2>' +
 			'</div>');
 
