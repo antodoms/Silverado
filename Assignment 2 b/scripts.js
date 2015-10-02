@@ -38,36 +38,44 @@ $(document).ready(function () {
                 //alert(element.title);
                 //movies.push(element.title);
 				
+				/* Replace any apostrophe's in the description */
+				var desc1 = element.description[0].replace(/\"/g, '&#34');
+				var desc2 = element.description[1].replace(/\"/g, '&#34');
+				var desc3 = element.description[2].replace(/\"/g, '&#34');
+				var desc = desc1 + '<br><br>' + desc2 + '<br><br>' + desc3;
+				
+				var d = element.description[0] + element.description[1] + element.description[2];
+				
+				//alert(element.screenings['Monday']);
+				var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+			
+				var times = [];
+				var times_string = "";
+				
+				days.forEach(function (day) {
+					var time = element.screenings[day];
+					
+					if (time !== undefined)
+						times.push(day + " : " + time);
+					
+					times_string = times_string + day + " " + time + "<br><br>";
+				});
+				
+		
 				$("#allmovies").append('<div class="moviepanel noselect shadow" ' +
 									  	'data-title="' + element.title + '"' +
 									   	'data-rating="' + element.rating + '"' +
 									   	//'data-genre="' + element.rating + '"' +
 									   	'data-summary="' + element.summary + '"' +
 									   	'data-trailer="' + element.trailer + '"' +
-									   	'data-description="' + element.description[0] + element.description[1] + element.description[2] + '"' +
+									   	//'data-description=\''  + desc + '\'' +
+									   	'data-description="' + desc + '"' +
+									   	'data-times="' + times_string + '"' +
 									  	'>' + 
 									   	'<img src="' + element.poster + '"/>' +
 									   	'</div>');
             });
-            /*
-            for (var item in movies) {
-                $("nav").append($("<div>", {
-                    text: item
-                }));
-            }
-			
-						'<div class="moviepanelextra noselect">' +
-				'<section1>' +
-					'<div id="title">' + movie.attr("data-title") + '</div>' +
-					'<div id="rating"><img src=ratings/' + movie.attr("data-rating") + '.jpg></div>' +
-					'<div id="summary">' + movie.attr("data-summary") + '</div>' +
-				'</section1>' +
-				'<section2>' +
-					'<div id="times"><h2>Showing Times:</h2>' + movie.attr("data-times") + '</div>' +
-					'<div class="booktickets">Book Tickets</div>' +
-				'</section2>' +
-			'</div>');
-			*/
+
         }
     });
     
@@ -150,7 +158,7 @@ $(document).ready(function () {
 					'<div id="rating"><img src=' + movie.attr("data-rating") + '></div>' +
 					'<div id="summary">' + movie.attr("data-summary") + '</div>' +
 					'<div id="description">' + movie.attr("data-description") + '</div>' +
-					'<div id="trailer">' + movie.attr("data-trailer") + '</div>' +
+					'<div id="trailer"><video width="480" height="320" controls> <source src="' + movie.attr("data-trailer") + '" type="video/mp4"></video></div>' +
 				'</section1>' +
 				'<section2>' +
 					'<div id="times"><h2>Showing Times:</h2>' + movie.attr("data-times") + '</div>' +

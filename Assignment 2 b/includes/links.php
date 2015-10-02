@@ -1,6 +1,6 @@
 		<!-- Imported stuff -->
 		<link rel='shortcut icon' href="images/logohorse.png">
-		<link rel="stylesheet" type="text/css" href="css/layout.css">
+		<link rel="stylesheet" type="text/css" href="layout.css">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poiret+One">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Josefin+Sans">
