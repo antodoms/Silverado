@@ -83,35 +83,6 @@ $(document).ready(function(){
     
 });
 // JQuerry ends here 
-$.ajax({
-        dataType: "json",
-        url: "https://jupiter.csit.rmit.edu.au/~e54061/wp/moviesJSON.php",
-        //data: { get_param: "value" },
-        success: function (data) {
-            var i=1;
-            $.each(data, function(index, element) {
-                var s = ".movies:nth-child("+i+")";
-                var n = ".description:nth-child("+i+")";
-                $(s).append('<img class=\"thumbnail\" src=\"'+element.poster+'\" alt=\"thumbnail\" /><h2>'+ element.title +'</h2>');
-                $(n).append('<img class=\"age\" src=\"./images/ratings/'+ element.rating +'png\" alt=\"ageguidance\" />');
-                  //  <div class="moviepanel noselect shadow" ' +
-                  //                      'data-title="' + element.title + '"' +
-                  //                      'data-rating="' + element.rating + '"' +
-                  //                      //'data-genre="' + element.rating + '"' +
-                   //                     'data-summary="' + element.summary + '"' +
-                  //                      'data-trailer="' + element.trailer + '"' +
-                   //                     'data-description="' + element.description[0] + element.description[1] + element.description[2] + '"' +
-                  //                      '>' + 
-                  //                      '<img src="' + element.poster + '"/>' +
-                   //                     '</div>');
-
-                i=i+1;
-            });
-        }
-    });
-    
-    
-
 
 /* Got this from http://stackoverflow.com/questions/1959455/how-to-store-an-array-in-jquery-cookie */
 // Cookie List Generator Code starts here 
