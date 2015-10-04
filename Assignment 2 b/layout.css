@@ -297,7 +297,6 @@ footer a:hover { color: crimson; }
 	text-align: center;
 	overflow: hidden;
 	background-color: dimgrey;
-	opacity: 0;
 	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-flow: row wrap;
@@ -315,7 +314,8 @@ footer a:hover { color: crimson; }
 	width: auto;
 	max-width: 100%;
 	padding: 10px;
-	display: flex;
+	display: -webkit-inline-block;
+	display: inline-block;
 	flex-flow: row wrap;
 }
 
@@ -356,10 +356,14 @@ footer a:hover { color: crimson; }
 	margin: 10px 10px 10px 10px;
 	padding: 0px;
 	text-align: left;
-	display: -webkit-flex;
-	display: flex;
+	display: -webkit-inline-block;
+	display: inline-block;
 	box-sizing: border-box;
 
+}
+
+#description p {
+	margin: 0 0 1em 0;
 }
 
 #rating {
@@ -441,8 +445,8 @@ footer a:hover { color: crimson; }
 /** TRIPLE PANEL **/
 @media only screen and (min-width : 631px) {
 	.moviepanel { width: calc(100% / 3 - 10px); }
-	.moviepanelextra section1 { max-width: calc(75% - 20px); }
-	.moviepanelextra section2 { max-width: calc(25% - 20px); }
+	.moviepanelextra section1 { width: calc(75% - 20px); }
+	.moviepanelextra section2 { width: calc(25% - 20px); }
 }
 
 /** QUADRUPLE PANEL **/
@@ -480,18 +484,18 @@ body {
 	transition: background-color 0.3s linear;
 }
 
-.moviepanel img { max-width: 100%; max-height: 100%; }
+.moviepanel img { max-width: 100%; max-height: 100%; width: 95%; }
 .moviepanel:hover { background-color: darkred; cursor: pointer; }
 .moviepanel.active { background-color: darkred; }
 
 /**************** TICKET DIALOG STUFF *****************/
 .booktickets {
-	height: 22px;
+	max-width: 160px;
+	height: 1em;
 	margin: 0.5em auto;
 	padding: 7px 14px 7px 14px;
 	color: white;
 	font-family: 'Quicksand', sans-serif;
-	font-size: 18px;
 	text-decoration: none;
 	-webkit-border-radius: 25;
 	border-radius: 25px;
