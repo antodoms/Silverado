@@ -373,3 +373,59 @@ $(document).ready(function () {
 	}
 
 });
+
+function Validate() {
+    ///////////////////////////////////////Name Validation//////////////////////////
+    var Nameletters = /^[A-Za-z' ]+$/;
+    var NumbersMatch = /^[0-9]+$/;
+    var ReturnCount = 0;
+
+    if (document.myForm.name.value == "") {
+        alert("Please fill out your name");
+        document.myForm.name.focus();
+        // return false;
+    }
+
+    if (document.myForm.name.value.match(Nameletters)) {
+        ReturnCount += 1;
+    }
+    else {
+        alert("Please use only valid letters");
+        document.myForm.name.focus();
+        //return false;
+    }
+
+    //////////////////////////////////////phoneNumber validation////////////////////////
+    if (document.myForm.phone.value == "") {
+        alert("Please fill out your Phone");
+        document.myForm.phone.focus();
+        //return false;
+    }
+
+    if (document.myForm.phone.value.match(NumbersMatch)) {
+        if (document.myForm.phone.value.length < 10 || document.myForm.phone.value.length > 10) {
+            alert("Please fill out your mobile number, mobile numbers have 10 digits");
+            document.myForm.phone.focus();
+        }
+        else {
+            if (document.myForm.phone.value[0] == "0" && document.myForm.phone.value[1] == "4") {
+                ReturnCount += 1;
+            }
+            else {
+                alert("Mobile Numbers start with '04'");
+                document.myForm.phone.focus();
+            }
+        }
+    }
+    else {
+        alert("Please type a number");
+        document.myForm.phone.focus();
+    }
+
+    if (ReturnCount >= 2) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
