@@ -2,11 +2,32 @@
 
 
 
+<!-- Entire Movie Panel -->
+		<div id="allmovies" ng-controller="moviesController">
+			<div class="moviepanel noselect shadow" ng-repeat="(code, movie) in movies">
+				<div id="movie-code" hidden>{{code}}</div>
+				<img ng-src={{movie.poster}}>
+			</div>
+		</div>
 
-
-<div id="allmovies">
-</div>
-
+		<!-- The 'slide down' extra information panel. This div gets moved around -->
+		<!-- The divs are empty because they are dynamically updated with JS -->
+		<div id="extrapanel" class="moviepanelextra noselect">
+			<section1>
+				<div id="title"></div>
+				<div id="summary"></div>
+				<div id="description"></div>
+				<button>read more</button>
+				<div class="more">
+					<video id="trailer" width="480" height="320" controls></video>
+				</div>
+			</section1>
+			<section2>
+				<div id="rating"></div>
+				<div id="sessions">
+				</div>
+			</section2>
+		</div>
 
 <!-- Ticket Buying Dialog -->
 <dialog id="ticketmenu">
