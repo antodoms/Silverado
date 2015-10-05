@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <!DOCTYPE html>
-<html>
+<html  <?php if($this->router->fetch_method() == "movies") echo 'ng-app="SilveradoApp"' ?>>
     <head>
 <!-- Imported stuff -->
 	<link rel='shortcut icon' href="<?php echo asset_url(); ?>images/logohorse.png">
