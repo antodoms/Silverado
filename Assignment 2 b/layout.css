@@ -297,7 +297,6 @@ footer a:hover { color: crimson; }
 	text-align: center;
 	overflow: hidden;
 	background-color: dimgrey;
-	opacity: 0;
 	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-flow: row wrap;
@@ -315,7 +314,8 @@ footer a:hover { color: crimson; }
 	width: auto;
 	max-width: 100%;
 	padding: 10px;
-	display: flex;
+	display: -webkit-inline-block;
+	display: inline-block;
 	flex-flow: row wrap;
 }
 
@@ -356,10 +356,14 @@ footer a:hover { color: crimson; }
 	margin: 10px 10px 10px 10px;
 	padding: 0px;
 	text-align: left;
-	display: -webkit-flex;
-	display: flex;
+	display: -webkit-inline-block;
+	display: inline-block;
 	box-sizing: border-box;
 
+}
+
+#description p {
+	margin: 0 0 1em 0;
 }
 
 #rating {
@@ -441,8 +445,8 @@ footer a:hover { color: crimson; }
 /** TRIPLE PANEL **/
 @media only screen and (min-width : 631px) {
 	.moviepanel { width: calc(100% / 3 - 10px); }
-	.moviepanelextra section1 { max-width: calc(75% - 20px); }
-	.moviepanelextra section2 { max-width: calc(25% - 20px); }
+	.moviepanelextra section1 { width: calc(75% - 20px); }
+	.moviepanelextra section2 { width: calc(25% - 20px); }
 }
 
 /** QUADRUPLE PANEL **/
@@ -480,18 +484,57 @@ body {
 	transition: background-color 0.3s linear;
 }
 
-.moviepanel img { max-width: 100%; max-height: 100%; }
+.moviepanel img { max-width: 100%; max-height: 100%; width: 95%; }
 .moviepanel:hover { background-color: darkred; cursor: pointer; }
 .moviepanel.active { background-color: darkred; }
 
 /**************** TICKET DIALOG STUFF *****************/
+
+.ticketBtn{
+	width: 100%;
+	height: 1.5em;
+	color: white;
+	display: inline-block;
+	margin: 0.5em auto;
+}
+
+.ticketBtn .btnDay {
+	width: calc(60% - 6px);
+	max-width: 110px;
+	height: 100%;
+	display: inline-block;
+	background-color: #f5c15a;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border: 3px solid rgba(0,0,0,0.1);
+}
+
+.ticketBtn .btnTime {
+	width: calc(40% - 6px);
+	max-width: 90px;
+	height: 100%;
+	display: inline-block;
+	background-color: #b18735;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border: 3px solid rgba(0,0,0,0.1);
+	transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+
+.ticketBtn .btnTime:hover {
+	cursor: pointer;
+	background-color: aliceblue;
+	color: darkslategrey;
+}
+
 .booktickets {
-	height: 22px;
+	max-width: 160px;
+	height: 1em;
 	margin: 0.5em auto;
 	padding: 7px 14px 7px 14px;
 	color: white;
 	font-family: 'Quicksand', sans-serif;
-	font-size: 18px;
 	text-decoration: none;
 	-webkit-border-radius: 25;
 	border-radius: 25px;
@@ -694,4 +737,96 @@ container .sectionoffset {
 	max-width: 75px;
 	margin: 1em;
 	display: inline-block;
+}
+
+#theatre {
+	width: 900px;
+	height: auto;
+	padding: 10px;
+	background-color: rgb(64, 64, 64);
+	margin: 0px auto;
+	font-family: Verdana;
+	font-size: 8px;
+	text-align: center;
+	left: 0;
+	right: 0;
+}
+
+#theatre button.enabled:disabled {
+	background-color: red;
+}
+
+#theatre button:disabled {
+	background-color: grey;
+}
+
+#theatre button{
+	background-color: orange;
+	border: none;
+	margin: 2px;
+}
+
+#theatre button:hover{
+	background-color: green;
+}
+#theatre button:disabled:hover{
+	background-color: grey;
+}
+
+#theatre button.enabled{
+	background-color: green;
+}
+#theatre button.enabled:disabled:hover{
+	background-color: red;
+}
+#theatre button.enabled:hover{
+	background-color: orange;
+}
+
+.NT1 button, .NT2 button {
+	width: 35px;
+	height: 35px;
+	padding: 20px;
+}
+
+
+.FT button {
+	width: 55px;
+	height: 55px;
+	padding: 20px;
+}
+
+
+.BT button {
+	width: 60px;
+	height: 54px;
+	padding: 42px;
+}
+
+.NT1, .NT2, .FT, .BT {
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 15px;
+}
+
+.white_content {
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 25%;
+	width: 50%;
+	height: 50%;
+	padding: 16px;
+	border: 15px solid #585858;
+	background-color: white;
+	z-index: 1002;
+	overflow: auto;
+}
+
+.show .more {
+    display: block;
+}
+
+.more {
+    display: none;
 }

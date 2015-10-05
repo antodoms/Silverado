@@ -19,8 +19,6 @@
 
 <?php include_once("includes/nav.php") ?>
 
-<?php include_once("process.php") ?>
-
 		<!-- Content -->
 		<article>
 			<h1>WELCOME BACK</h1>

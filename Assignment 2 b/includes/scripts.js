@@ -1,16 +1,3 @@
-var seats = [["SA",1], ["SP",1], ["SC",1], ["FA",2], ["FC",2], ["B1",3], ["B2",3], ["B3",3]];
-var ticketcheck = [["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12"], 
-				   ["B1","B2","B3","B4","B5",
-					"B11","B12","B13","B14","B15",
-					"B21","B22","B23","B24","B25",
-					"B31","B32","B33","B34","B35",
-					"B6","B7","B8","B9","B10",
-					"B16","B17","B18","B19","B20",
-					"B26","B27","B28","B29","B30",
-					"B36","B37","B38","B39","B40"],
-				   ["C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11","C12"]];
-var hidelist = {"SA":ticketcheck[1],"SP":ticketcheck[1],"SC":ticketcheck[1],"FA":ticketcheck[0],"FC":ticketcheck[0],"B1":ticketcheck[2],"B2":ticketcheck[2],"B3":ticketcheck[2]};
-
 var app = angular.module('SilveradoApp', []);
 
 var activeMovie = "AC";		/* Keep track of which movie the user is currently 'viewing' */
@@ -33,8 +20,6 @@ app.controller('moviesController', function($scope, $http) {
 $(document).ready(function () {
 
 	checkCookie();
-	loadtheatre();
-	resettheatre();
 	$(".moviepanelextra").hide();
 
 	/**********************************************/
@@ -125,10 +110,8 @@ $(document).ready(function () {
 		extrapanel.find("#description").html(description);
 		extrapanel.find("#sessions").html(screenings);
 
-		deleteAllCookies();
-		//resetseats();
-		//resettheatre();
-		setCookie("movie", pos + 1, 1);
+
+		setCookie("x_movie", pos + 1, 1);
 
 		/* Show the hidden extra panel */
 		$(".moviepanelextra").slideDown(1000);
@@ -139,14 +122,6 @@ $(document).ready(function () {
 		return false;
 	}
 
-	$("#theatre button").click(function(){
-		$(this).toggleClass("enabled");
-	});
-
-	$( "#theatre button" ).bind( "click",
-		function(){
-			toggletheatre(loadid(this));
-	});
 
 	/********************************************************/
 	/* Movie Booking Form Dialog (when a session is chosen) */
@@ -185,7 +160,7 @@ $(document).ready(function () {
 		var day = $(this).find(".btnDay").text();
 		var time = $(this).find(".btnTime").text();
 
-		setCookie("discount", checkDiscount(day, time), 1);
+		setCookie("x_discount", checkDiscount(day, time), 1);
 
 		dialog.showModal();
 		$("body").css("-webkit-filter", "blur(5.0px)");
@@ -392,7 +367,7 @@ $(document).ready(function () {
 // Cookie List Generator Code starts here
 var cookieList = function(cookieName) {
 var cookie = jQuery.cookie(cookieName);
-console.log(cookie);
+//console.log(cookie);
 var items = cookie ? cookie.split(/,/) : new Array();
 
 return {
@@ -530,12 +505,12 @@ function toggletheatre(dataid){
 function loadtheatre(){
 
 	if(getCookie("selectedseat") != null){
-		var seatlist = new cookieList("selectedseat");
-		var data = seatlist.items();
-		for(var i=0; i<data.length;i++){
-			var d = document.getElementById(data[i]);
-			d.className = d.className + "enabled";
-		}
+	var seatlist = new cookieList("selectedseat");
+	var data = seatlist.items();
+	for(var i=0; i<data.length;i++){
+		var d = document.getElementById(data[i]);
+		d.className = d.className + "enabled";
+	}
 	}
 }
 
@@ -555,6 +530,7 @@ function settheatre(typeid){
 	setCookie("seattype", typeid , 1);
 
 	document.getElementById('theatre').style.display='block';
+	document.getElementById('fade').style.display='block';
 
 	var value = 0;
 	resettheatre();
@@ -578,49 +554,5 @@ function settheatre(typeid){
 				document.getElementById(data[j]).disabled = true;
 			}
 		}
-	}
-}
-
-//update the price of table whenever the function is called
-function updateprice(){
-/*
-	var total = 0.00;
-	var table = document.getElementById('ticket').rows;
-
-	if(getCookie("price") != null){
-	for( var i=1; i< (table.length-1); i++){
-
-		var seattype = new cookieList(seats[i-1][0]);
-		//console.log(seattype.items().length);
-		var val = seattype.items().length * rate[getCookie("price") -1][i-1];
-		total = total + val;
-
-	   table[i].cells[2].innerHTML = "<input type=\"hidden\" name=\""+seats[i-1][0]+"\" value="+ seattype.items().length +"> AUD $" + parseFloat(val).toFixed(2);
-	}
-   var moviename = movies[ (getCookie('movie').trim(';')[0] - 1)];
-	var dayname = getday(getCookie('time'));
-	table[9].cells[1].innerHTML = "<input type=\"hidden\" name=\"price\" value=\"" + parseFloat(total).toFixed(2) + "\" min=\"1.00\" max=\"100000.00\" required><input type=\"hidden\" name=\"movie\" value=\""+ moviename +"\"><input type=\"hidden\" name=\"day\" value=\""+ dayname +"\"><input type=\"hidden\" name=\"time\" value=\""+ gettime(getCookie('time')) + "\"> AUD $"+ parseFloat(total).toFixed(2);
-	}
-
-	if(total > 0.00 ){
-		document.getElementById('formsubmit').disabled = false;
-	}
-	else {
-		document.getElementById('formsubmit').disabled = true;
-	}
-	*/
-}
-
-//resetting the seat
-function resetseats(){
-
-	for(var i=0; i < ticketcheck.length ; i++){
-		for(var j=0; j< ticketcheck[i].length ; j++){
-			document.getElementById(ticketcheck[i][j]).classList.remove("enabled");
-		}
-	}
-
-	for(var i=0; i< seats.length ; i++){
-		deleteCookie(seats[i][0]);
 	}
 }
