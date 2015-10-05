@@ -7,7 +7,6 @@
 <div id="allmovies">
 </div>
 
-<!-- Ticket Buying Dialog -->
 
 <!-- Ticket Buying Dialog -->
 <dialog id="ticketmenu">
@@ -226,6 +225,10 @@
 		  <div style="margin-left: 40%; margin-right: 40%;  background-color: white;color: black;font-weight: bolder;text-align: -webkit-center;padding: 20px;" onclick="document.getElementById('theatre').style.display='none'">OK</div>
 	</div>
 </dialog>
+
+
+
+
 
 
 
