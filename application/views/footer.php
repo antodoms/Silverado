@@ -1,4 +1,4 @@
-		 <!-- Footer -->
+		<!-- Footer -->
 		<footer>
 			<div class="footercol">
 				<h2>About Us</h2>
@@ -24,5 +24,4 @@
 		</footer>
 		<?php //include_once("/home/eh1/e54061/public_html/wp/debug.php"); ?>
 	</body>
-
 </html>
