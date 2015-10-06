@@ -2,14 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Booking extends CI_Controller {
-        function __construct()
-	{
-		parent::__construct();
-                
-                
-	}
         
         public function cart(){
+            
+            $this->add();
+            $data=$this->session->all_userdata();
+            if($data['email']== '' || $data['phone']==''){   
+               redirect('User/user_login_show');      
+            }
+            
+            
             $data = $this->session->all_userdata();
             
             print "\n".json_encode($data);
@@ -35,9 +37,7 @@ class Booking extends CI_Controller {
         
 	public function add()
 	{
-		//$this->load->model('user_model');
-                //$dataSet = $this->user_model->getUserData();
-            $this->load->library('session');
+            //$this->load->library('session');
             $totseat = ['SA', 'SP', 'SC', 'FA', 'FC', 'B1', 'B2', 'B3'];
             $priceReg = ["18","15","12","30","25","30","30","30"];
             $priceDis = ["12","10","8","25","20","20","20","20"];
@@ -98,24 +98,7 @@ class Booking extends CI_Controller {
                $data['email']='';     
             }
             $this->session->set_userdata($data);
-            $this->load->helper('url');
-            if($data['email']== '' || $data['phone']==''){   
-               redirect('User/user_login_show');      
-            }
-            else{
-                redirect('Booking/cart');
-            }
-            
-                //print "\n".json_encode($this->session->userdata('cart'));
-              
-
-        /*/*  $newdata = array(
-                   'name'  => 'johndoe',
-                   'email'     => 'johndoe@some-site.com',
-                   'phone' => TRUE
-               );
-               */
-//$this->session->set_userdata($newdata);
+                       
 	}
         
 

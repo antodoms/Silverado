@@ -1,7 +1,6 @@
 
 <?php include_once("header.php") ?>
 
-
         	<!-- Content -->
 		<article>
 			<h1>WELCOME BACK</h1>

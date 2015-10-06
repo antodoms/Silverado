@@ -2,7 +2,7 @@
 	This table is where the user can select the different ticket types. -->
 
 <div id="ticketmenu">
-	<form method="post" action="<?php echo site_url('booking/add'); ?>">
+	<form method="post" action="<?php echo site_url('booking/cart'); ?>">
 		<h1>Ticket Booking</h1>
 
 		<!-- Ticket selection table -->
