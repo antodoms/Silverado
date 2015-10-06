@@ -5,7 +5,10 @@
     <container>
         <section>
             <?php 
-            
+           
+            if(!empty($data['cart'])){
+                
+           
             foreach ($data['cart'] as $item){
                 echo '<h1> Movie Type'.$item['movie'].'</h1><br><p>Day & Time '.$item['day'].' '.$item['time'].'</p><br>';
                 
@@ -19,7 +22,7 @@
                     echo '</p>';
                 }
             }
-            
+            }
             ?>
         </section>
     </container>
