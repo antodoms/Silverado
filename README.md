@@ -1,5 +1,5 @@
-Silverado - Movie Theatre Project
-=================================
+# Silverado - Movie Theatre Project
+===================================
 
 
 Assignment 2 a - Anto & Hudson
@@ -9,18 +9,31 @@ Assignment 2 b - Bryan
 
 
 
-Team Members
--------------
+## Team Members
+---------------
 
-Anto dominic
+Anto dominic - s3553172@student.rmit.edu.au
 
-Bryan Choo
+Bryan Choo - s3428010@student.rmit.edu.au
 
-Hudson Cassidy
+Hudson Cassidy - s3539413@student.rmit.edu.au
 
 
 
-Mentor
-------
+## Mentor
+---------
 
-Laurence Barnes
+Laurence Barnes & Trevor Reynolds
+
+
+## How to Test this Code ?
+--------------------------
+
+```
+git clone https://github.com/antodoms/Silverado
+
+chmod 777 application/Database
+
+chmod 766 application/Database/silverado.db
+
+```
