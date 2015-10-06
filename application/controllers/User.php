@@ -29,12 +29,12 @@ class User extends CI_Controller {
         // Show login page
         public function user_login_show() {
             
-        $this->load->view('login_form');
+        $this->load->view('Login_form');
         }
 
         // Show registration page
         public function user_registration_show() {
-        $this->load->view('registration_form');
+        $this->load->view('Registration_form');
         }
 
 // Validate and store registration data in database
