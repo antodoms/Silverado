@@ -5,10 +5,13 @@ class Home extends CI_Controller {
         function __construct()
 	{
 		parent::__construct();
+                
+                $this->load->library('session');
+                
 	}
         
 	public function index()
-	{       //print "\n".json_encode($this->session->userdata('cart'));
+	{       print "\n".json_encode($this->session->all_userdata());
 		//$this->load->model('user_model');
                 //$dataSet = $this->user_model->getUserData();
                 $this->load->view('Home_view');

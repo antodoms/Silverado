@@ -4,20 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Booking extends CI_Controller {
         
         public function cart(){
-            
-            $this->add();
+           
             $data=$this->session->all_userdata();
-            if($data['email']== '' || $data['phone']==''){   
-               redirect('User/user_login_show');      
+            if(empty($data['email']) || empty($data['phone'])){   
+               redirect('/index.php/User/user_login_show/','refresh');      
             }
-            
+            else{
             
             $data = $this->session->all_userdata();
             
             print "\n".json_encode($data);
             $this->load->view('Cart_view',
                       ['data' => $data]);
-        }
+        }}
         
         public function ifDiscount($day, $time) {
 
@@ -76,7 +75,7 @@ class Booking extends CI_Controller {
             $seats = array('movie'=> $this->input->post('movie'),'day'=>$this->input->post('day'),'time'=>$this->input->post('time'),'seats' => $finalseats, 'sub-total'=>$subtotal);
             $screening = array('screening'=> $seats);
             
-            if($this->session->userdata('cart')==null){
+            if($this->session->userdata('cart')== null){
                 $getcart[0]=$seats;
             }
             else{
@@ -92,13 +91,9 @@ class Booking extends CI_Controller {
             } 
             
             $data['total'] = $total;
-            if($data['email']== null || $data['phone']==null){   
-               $data['name']='';
-               $data['phone']='';
-               $data['email']='';     
-            }
+            
             $this->session->set_userdata($data);
-                       
+            redirect('/booking/cart/', 'refresh');         
 	}
         
 
