@@ -27,13 +27,13 @@ class User extends CI_Controller {
 	}
         
         // Show login page
-        public function user_login_show() {
+        public function login() {
             
         $this->load->view('Login_form');
         }
 
         // Show registration page
-        public function user_registration_show() {
+        public function register() {
         $this->load->view('Registration_form');
         }
 
@@ -50,10 +50,10 @@ class User extends CI_Controller {
                 $result = $this->user_model->register_user($data);
                 if ($result == TRUE) {
                     $data['message_display'] = 'Registration Successfully !';
-                    $this->load->view('login_form', ['data' => $data]);
+                    $this->load->view('Login_form', ['data' => $data]);
                 } else {
                     $data['message_display'] = 'User already exist!';
-                    $this->load->view('registration_form', ['data' => $data]);
+                    $this->load->view('Registration_form', ['data' => $data]);
                 }
             
         }

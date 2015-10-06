@@ -9,11 +9,11 @@
             if(!empty($data['cart'])){
                 
            
-            foreach ($data['cart'] as $item){
-                echo '<h1> Movie Type'.$item['movie'].'</h1><br><p>Day & Time '.$item['day'].' '.$item['time'].'</p><br>';
-                
-                foreach ($item['seats'] as $value) {
-                    echo '<br><p> Type:'.$value['type'].'--> ';
+            for ($i=0; $i< count($data['cart']); $i++) {
+                echo '<h1> Movie Type'.$data['cart'][$i]['movie'].'</h1><br><p>Day: '.$data['cart'][$i]['day'].' & Time: '.$data['cart'][$i]['time'].'</p>';
+                echo '<p>';
+                foreach ($data['cart'][$i]['seats'] as $value) {
+                    echo 'Type:'.$value['type'].'--> ';
                     
                     foreach ($value['seats'] as $s){
                         echo ' '.$s;
@@ -21,9 +21,14 @@
                     
                     echo '</p>';
                 }
+                
+              echo '<a href="'.site_url('Booking/delete/').'/'.($i+1).'"><button>Remove From Cart</button></a><br><br>';  
             }
+            
             }
             ?>
+            <br><br>
+           <a href="<?php echo site_url('/movies')?>"><button>Add More Movies</button></a>
         </section>
     </container>
 </article>

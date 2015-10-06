@@ -8,7 +8,7 @@ class Booking extends CI_Controller {
             $data=$this->session->all_userdata();
             if(empty($data['email']) || empty($data['phone'])){   
                 
-               redirect('user/user_login_show/','refresh');      
+               redirect('user/login/','refresh');      
             }
             else {
             

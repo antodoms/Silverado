@@ -14,8 +14,9 @@
             <label>Email: </label>
             <input type= "text" name= "email" required/>
             <br>
-            <input type = "submit" value = "submit"/>
+            <input type = "submit" value = "submit"/> 
         </form>
+            <a href="<?php echo site_url('User/login/')?>"><button>Login</button></a>
             </section>
 </container>
 </article>

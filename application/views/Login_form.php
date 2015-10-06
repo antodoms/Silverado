@@ -13,6 +13,7 @@
                 <br>
                 <input type="submit" value="submit"/>
             </form>
+            <a href="<?php echo site_url('User/register/')?>"><button>Register</button></a>
         </section>
     </container>
 </article>
