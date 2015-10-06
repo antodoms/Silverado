@@ -150,6 +150,8 @@ footer {
 	background-color: black;
 	font-family: 'Source Sans Pro', sans-serif;
 	color:white;
+	text-align: center;
+	justify-content: center;
 	padding: 20px 10% 20px 10%;
 }
 
@@ -160,11 +162,13 @@ footer p {
 }
 
 footer a {
-	margin: 0 auto;
-	color: white;
+	display: block;
+	color: lightslategrey;
 	text-decoration: none;
 	transition: color 0.2s linear;
 	cursor: pointer;
+	text-align: left;
+	margin: 10px 30px 10px 30px;
 }
 
 .footerlinks {
@@ -186,6 +190,22 @@ footer a {
 
 footer a:hover { color: crimson; }
 
+.footercol {
+	width: 250px;
+	display: inline-block;
+	margin: 0 20px 0 20px;
+	vertical-align: top;
+}
+
+.footercol h2 {
+	background-color: brown;
+	margin: 10px 0 10px 0;
+}
+
+.footercol p {
+	text-align: left;
+	margin: 10px 30px 10px 30px;
+}
 
 /*********************** TABLE STUFF ************************/
 /* Table elements primarily for the Schedule & Pricing page */
@@ -849,11 +869,11 @@ container .sectionoffset {
 }
 
 .show .more {
-    display: block;
+	display: block;
 }
 
 .more {
-    display: none;
+	display: none;
 }
 
 .ticketBtn.active .btnTime {
@@ -874,3 +894,4 @@ container .sectionoffset {
 	opacity:.80;
 	filter: alpha(opacity=80);
 }
+

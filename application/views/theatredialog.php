@@ -1,3 +1,6 @@
+<!-- This is the seat selection HTML box that pops up when 
+	a user chooses to add a seat(s) -->
+
 <dialog id="theatre" class="white_content">
 	<div class="NT1">
 		<button id="B1">B1</button>
