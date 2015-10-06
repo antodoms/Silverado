@@ -1,17 +1,20 @@
-var seats = [["SA",1], ["SP",1], ["SC",1], ["FA",2], ["FC",2], ["B1",3], ["B2",3], ["B3",3]];
+var seats = [["SA",1], ["SP",1], ["SC",1], 
+			 ["FA",2], ["FC",2], 
+			 ["B1",3], ["B2",3], ["B3",3]];
+
 var ticketcheck = [["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12"], 
-				   ["B1","B2","B3","B4","B5",
-					"B11","B12","B13","B14","B15",
-					"B21","B22","B23","B24","B25",
-					"B31","B32","B33","B34","B35",
-					"B6","B7","B8","B9","B10",
-					"B16","B17","B18","B19","B20",
-					"B26","B27","B28","B29","B30",
-					"B36","B37","B38","B39","B40"],
+				   ["B1","B2","B3","B4","B5","B11","B12","B13","B14","B15",
+					"B21","B22","B23","B24","B25","B31","B32","B33","B34","B35",
+					"B6","B7","B8","B9","B10","B16","B17","B18","B19","B20",
+					"B26","B27","B28","B29","B30","B36","B37","B38","B39","B40"],
 				   ["C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11","C12"]];
-var hidelist = {"SA":ticketcheck[1],"SP":ticketcheck[1],"SC":ticketcheck[1],"FA":ticketcheck[0],"FC":ticketcheck[0],"B1":ticketcheck[2],"B2":ticketcheck[2],"B3":ticketcheck[2]};
-var priceReg = ["$18","$15","$12","$30","$25","$30","$30","$30"];
-var priceDis = ["$12","$10","$8","$25","$20","$20","$20","$20"];
+
+var hidelist = {"SA":ticketcheck[1],"SP":ticketcheck[1],"SC":ticketcheck[1],
+				"FA":ticketcheck[0],"FC":ticketcheck[0],
+				"B1":ticketcheck[2],"B2":ticketcheck[2],"B3":ticketcheck[2]};
+
+var priceReg = ["$18.00","$15.00","$12.00","$30.00","$25.00","$30.00","$30.00","$30.00"];
+var priceDis = ["$12.00","$10.00","$8.00","$25.00","$20.00","$20.00","$20.00","$20.00"];
 
 var app = angular.module('SilveradoApp', []);
 
@@ -120,7 +123,7 @@ $(document).ready(function () {
 										'</div>';
 		});
 
-		/* Update extra panel information */
+		/* Update Dropdown Extra Panel information */
 		extrapanel.find("#title").html(title);
 		extrapanel.find("#summary").html(summary);
 		extrapanel.find("#trailer").html('<source src=' + trailer + ' type=video/mp4>');
@@ -140,31 +143,92 @@ $(document).ready(function () {
 		return false;
 	}
 
+	/*********************************************************************/
+	/* Button for when user clicks on a Movie Screening (e.g. 12pm, 6pm) */
+	/*********************************************************************/
+
+	$(document).on('click', '.ticketBtn', function() {
+		var selectedMovie = movies[activeMovie];
+
+		/* Check if screening is discount or not */
+		var day = $(this).find(".btnDay").text();
+		var time = $(this).find(".btnTime").text();
+
+		$(".ticketBtn").removeClass("active");
+		$(this).addClass("active");
+		
+		resetSeats();
+		setCookie("discount", checkDiscount(day, time), 1);
+		
+		$("input[name=movie]").val(activeMovie);
+		$("input[name=day]").val(day);
+		$("input[name=time]").val(time);
+
+		/* Show ticket menu and update table prices */
+		$("#ticketmenu").slideDown(1000);
+		
+		$("#ticketmenu .price").each( function(index) {
+			if (getCookie("discount") === "true")
+				$(this).html(priceDis[index]);
+			else
+				$(this).html(priceReg[index]);
+		});
+	});
+
+	$(document).on('click', '.close', function() {
+		$("#ticketmenu").slideUp(1000);
+		$(".ticketBtn").removeClass("active");
+	});
+	
+	/* Returns whether the screening should have a discount */
+	function checkDiscount(day, time) {
+
+		if (!screeningExists(movies[activeMovie], day, time))
+			return false;
+		
+		if (day.toString() === "Monday" || day.toString() === "Tuesday")
+			return true;
+
+		if (day.toString() !== "Saturday" && day.toString() !== "Sunday") {
+			if (time.toString() === "1pm")
+				return true;
+		}
+		return false;
+	}
+	
+	/* Returns whether the screening exists (in case user modified html) */
+	function screeningExists(movie, day, time) {
+		var validScreening = false;
+		
+		$.each(movies[activeMovie].screenings, function(d, t) {
+			if (day === d && time === t) {
+				validScreening = true;
+			}
+		});
+		return validScreening;
+	}
+	
+	/**************************************************/
+	/* Theatre: Seat Booking Pop-up related functions */
+	/**************************************************/
+	
+	/* Each 'seat', which represent individual buttons */
 	$("#theatre button").click(function(){
 		$(this).toggleClass("enabled");
 	});
 
-	$( "#theatre button" ).bind( "click",
-		function(){
-			toggleTheatre(loadid(this));
+	$("#theatre button").bind("click", function(){
+		toggleTheatre(loadid(this));
 	});
 
-	/********************************************************/
-	/* Movie Booking Form Dialog (when a session is chosen) */
-	/********************************************************/
-
-	var dialog = document.getElementById('ticketmenu');
-
-	$(".theatreOK").click(function () {
+	/* OK button when the user has finished choosing seats */
+	$("#theatre .theatreOK").click(function () {
 		$(".blurrable").css("-webkit-filter", "blur(0.0px)");
 		$("#theatre").hide();
 		
 		/* set selected seats as hidden input value */
 		var type = getCookie("seattype");
-		
 		var seats = getCookie(type);
-		
-		//alert(type + ": " + seats);
 		
 		$("input[name=" + type + "]").val(seats);
 		
@@ -181,85 +245,9 @@ $(document).ready(function () {
 		
 	});
 
-	$(".close").click(function () {
-		//dialog.close();
-		$(dialog).slideUp(1000);
-		$(".ticketBtn").removeClass("active");
-		$(".blurrable").css("-webkit-filter", "blur(0.0px)");
-	});
-
-	$(document).keyup( function (e) {
-		e = e || window.event;
-		if (e.keyCode == 27) {
-		$(".blurrable").css("-webkit-filter", "blur(0.0px)");
-		}
-	});
-
 	function removeCurrency(amount) {
 		return Number(amount.replace(/[^0-9.]+/g,""));
 	}
-
-
-	/*************************************************************************/
-	/* Dialog menu that requires input at each stage before showing more */
-	var day;
-	var movie;
-	var time;
-	var discount;
-
-	$(document).on('click', '.ticketBtn', function() {
-		var selectedMovie = movies[activeMovie];
-
-		/* Check if session is discount or not */
-		var day = $(this).find(".btnDay").text();
-		var time = $(this).find(".btnTime").text();
-
-		$(".ticketBtn").removeClass("active");
-		$(this).addClass("active");
-		
-		resetSeats();
-		setCookie("discount", checkDiscount(day, time), 1);
-		
-		$("input[name=movie]").val(activeMovie);
-		$("input[name=day]").val(day);
-		$("input[name=time]").val(time);
-
-		$(dialog).slideDown(1000);
-		
-		//$("html,body").animate({ scrollTop: $(dialog).offset().top }, "slow");
-		
-		$(".price").each( function(index) {
-			if (getCookie("discount") === "true")
-				$(this).html(priceDis[index]);
-			else
-				$(this).html(priceReg[index]);
-		});
-	});
-
-	/* Returns whether the session should have a discount */
-	function checkDiscount(day, time) {
-
-		/* Check to make sure user hasn't modified day/time */
-		var validScreening = false;
-
-		$.each(movies[activeMovie].screenings, function(d, t) {
-			if (day === d && time === t){
-				validScreening = true;
-			}
-		});
-		if (validScreening === false)
-			return false;
-
-		if (day.toString() === "Monday" || day.toString() === "Tuesday")
-			return true;
-
-		if (day.toString() !== "Saturday" && day.toString() !== "Sunday") {
-			if (time.toString() === "1pm")
-				return true;
-		}
-		return false;
-	}
-
 });
 
 //**********************************************************************************************************//
