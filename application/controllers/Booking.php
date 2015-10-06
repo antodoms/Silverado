@@ -13,7 +13,7 @@ class Booking extends CI_Controller {
             
             $data = $this->session->all_userdata();
             
-            print "\n".json_encode($data);
+            //print "\n".json_encode($data);
             $this->load->view('Cart_view',
                       ['data' => $data]);
         }}
