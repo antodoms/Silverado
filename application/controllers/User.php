@@ -6,20 +6,20 @@ class User extends CI_Controller {
         parent::__construct();
 
         // Load form helper library
-        $this->load->helper('form');
+        //$this->load->helper('form');
 
         // Load form validation library
-        $this->load->library('form_validation');
+        //$this->load->library('form_validation');
 
         // Load session library
-        $this->load->library('session');
+        //$this->load->library('session');
 
-        // Load database
-        $this->load->model('User_model');
+       
     }
 
 	public function index()
 	{
+            
 		$this->load->model('user_model');
                 $dataSet = $this->user_model->getUserData();
                 $this->load->view('User_view',[
@@ -29,6 +29,7 @@ class User extends CI_Controller {
         
         // Show login page
         public function user_login_show() {
+            
         $this->load->view('login_form');
         }
 
@@ -116,4 +117,3 @@ class User extends CI_Controller {
     }
 
 ?>
-}

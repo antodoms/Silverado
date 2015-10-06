@@ -83,7 +83,7 @@ $autoload['drivers'] = array('sqlite3');
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url','utility');
+$autoload['helper'] = array('url','utility','form');
 
 /*
 | -------------------------------------------------------------------
