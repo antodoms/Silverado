@@ -1,7 +1,7 @@
 
 <!-- Ticket Buying Dialog -->
 <div id="ticketmenu">
-	<form method="post" action="http://titan.csit.rmit.edu.au/~e54061/wp/testbooking.php">
+	<form method="post" action="<?php echo site_url('booking/add'); ?>">
 		<h1>Ticket Booking</h1>
 
 	

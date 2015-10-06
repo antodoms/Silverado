@@ -20,7 +20,7 @@ var activeMovie = "AC";		/* Keep track of which movie the user is currently 'vie
 var movies = {};
 
 app.controller('moviesController', function($scope, $http) {
-	$http.get("https://jupiter.csit.rmit.edu.au/~e54061/wp/moviesJSON.php")
+	$http.get("http://localhost:8080/assets/js/moviesJSON.txt")
 	.success(function(data) {
 		/* Store data in global scope variable for php page to access */
 		$scope.movies = data;
@@ -468,6 +468,6 @@ function resetSeats(){
 	});
 	
 	$("input[type=hidden]").each(function() {
-		$(this).val("");
+		$(this).val("0");
 	});
 }

@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','form_validation','pagination');
+$autoload['libraries'] = array('database','form_validation','pagination','session');
 
 /*
 | -------------------------------------------------------------------
@@ -73,7 +73,7 @@ $autoload['libraries'] = array('database','form_validation','pagination');
 |
 |	$autoload['drivers'] = array('cache');
 */
-$autoload['drivers'] = array();
+$autoload['drivers'] = array('sqlite3');
 
 /*
 | -------------------------------------------------------------------

@@ -16,7 +16,7 @@
 		<?php include_once("includes/header.php") ?>
 
 		<?php include_once("includes/nav.php") ?>
-
+            
 		<!-- Entire Movie Panel -->
 		<div id="allmovies" ng-controller="moviesController">
 			<div class="moviepanel noselect shadow" ng-repeat="(code, movie) in movies">
