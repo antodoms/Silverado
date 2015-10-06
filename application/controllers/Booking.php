@@ -7,9 +7,10 @@ class Booking extends CI_Controller {
            
             $data=$this->session->all_userdata();
             if(empty($data['email']) || empty($data['phone'])){   
+                
                redirect('/index.php/User/user_login_show/','refresh');      
             }
-            else{
+            else {
             
             $data = $this->session->all_userdata();
             
@@ -93,7 +94,7 @@ class Booking extends CI_Controller {
             $data['total'] = $total;
             
             $this->session->set_userdata($data);
-            redirect('/booking/cart/', 'refresh');         
+            redirect('/index.php/booking/cart/', 'refresh');         
 	}
         
 
