@@ -56,5 +56,6 @@ $route['price'] = 'home/price';
 $route['booking/cart'] = 'Booking/cart';
 $route['booking/add'] = 'Booking/add';
 $route['user/login_check'] = 'User/login_check';
+$route['user/user_login_show'] = 'User/user_login_show';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
