@@ -1,13 +1,22 @@
+<?php include_once("header.php") ?>
 
-<form action="<?php echo site_url('User/login_check')?>" name="myForm" onsubmit="return(Validate());">
-    <lable>Name: </lable>
-    <input type = "text" name = "Name" />
-    <br>
-    <lable>Phone: </lable
-    <input type = "text" name = "Phone">
-    <br>
-    <lable>Email: </lable>
-    <input type= "text" name= "email" required/>
-    <br>
-    <input type = "submit" value = "submit"/>
-</form>
+<article>
+    <h1>WELCOME BACK</h1>
+    <container>
+        <section>
+        <form method="post" action="<?php echo site_url('User/registration_check')?>" name="myForm" onsubmit="return(Validate());">
+            <label>Name: </label>
+            <input type = "text" name = "name" required/>
+            <br>
+            <label>Phone: </label>
+            <input type = "text" name = "phone" required/>
+            <br>
+            <label>Email: </label>
+            <input type= "text" name= "email" required/>
+            <br>
+            <input type = "submit" value = "submit"/>
+        </form>
+            </section>
+</container>
+</article>
+<?php include_once("footer.php") ?>

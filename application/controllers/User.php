@@ -38,29 +38,24 @@ class User extends CI_Controller {
         }
 
 // Validate and store registration data in database
-        public function user_reg_check(){
+        public function registration_check(){
 
-            // Check validation for user input in SignUp form
-            $this->form_validation->set_rules('name', 'Name', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|xss_clean');
-            if ($this->form_validation->run() == FALSE) {
-                $this->load->view('registration_form');
-            } else {
+            
                 $data = array(
                 'name' => $this->input->post('name'),
-                'email' => $this->input->post('email_value'),
-                'phone' => $this->input->post('password')
+                'email' => $this->input->post('email'),
+                'phone' => $this->input->post('phone')
                 );
-                $result = $this->login_database->registration_insert($data) ;
+                
+                $result = $this->user_model->register_user($data);
                 if ($result == TRUE) {
                     $data['message_display'] = 'Registration Successfully !';
-                    $this->load->view('login_form', $data);
+                    $this->load->view('login_form', ['data' => $data]);
                 } else {
-                    $data['message_display'] = 'Username already exist!';
-                    $this->load->view('registration_form', $data);
+                    $data['message_display'] = 'User already exist!';
+                    $this->load->view('registration_form', ['data' => $data]);
                 }
-            }
+            
         }
 
 // Check for user login process

@@ -34,6 +34,23 @@ class Booking extends CI_Controller {
 		return false;
 	}
         
+        public function delete($itemid){
+            
+            $data = $this->session->all_userdata();
+            $temp = array();
+            for ($i=0; $i < count($data['cart']);$i++) {
+                
+                if($i != ($itemid-1)){
+                    $temp[count($temp)] = $data['cart'][$i];
+                }
+            }
+            
+            $data['cart'] = $temp;
+            
+            $this->session->set_userdata($data);
+            redirect('booking/cart/', 'refresh');
+            
+        }
         
 	public function add()
 	{

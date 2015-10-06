@@ -11,7 +11,7 @@ class Home extends CI_Controller {
 	}
         
 	public function index()
-	{      // print "\n".json_encode($this->session->all_userdata());
+	{       print "\n".json_encode($this->session->all_userdata());
 		//$this->load->model('user_model');
                 //$dataSet = $this->user_model->getUserData();
                 $this->load->view('Home_view');
