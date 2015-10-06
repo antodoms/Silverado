@@ -1,32 +1,5 @@
 <?php include_once("header.php") ?>
 
-        	<!-- Content -->
-		<article>
-			<h1>WELCOME BACK</h1>
-			<container>
-				<section>
-					<p>After several weeks of renovations, we are proud to be re-opening
-						our doors for all you eager cinema goers! </p>
-					<p>Come and have a movie experience liken ever before, with the technology
-						and features of any modern cinema, but in the comfortable and intimate
-						atmosphere that Silverado is renowned for.</p>
-				</section>
-				<section>
-					<p>We are now fully equipped with newly refurbished seats,
-						an entirely new, state-of-the-art
-						<a href="http://www.dolby.com/us/en/platforms/dolby-cinema.html"><b>Dolby Cinema®</b></a>
-						surround sound & lighting system as well as
-						<a href="https://www.reald.com/"><b>RealD 3D®</b></a>
-						integrated technology for our screens. </p>
-					<p>We have everything you could need for that perfect cinema experience.</p>
-				</section>
-				<section class="sectionoffset">
-					<img class="logo" src="<?php echo asset_url(); ?>images/logodolby.png"/>
-					<br>
-					<img class="logo" src="<?php echo asset_url(); ?>images/logoreald.png"/>
-				</section>
-			</container>
-=======
 <!-- Content -->
 <article>
 	<h1>WELCOME BACK</h1>
@@ -64,7 +37,7 @@
 		<section>
 			<p>We now have a variety of seating options, so you have more ways to
 				enjoy your movie experience:</p>
->>>>>>> 05a37710dae2a1100770aa42a6c22651a835689c
+                        
 			<div class="centerer">
 				<p><i class="fa fa-angle-right"></i>&nbsp;&nbsp;40 Regular seats</p>
 				<p><i class="fa fa-angle-right"></i>&nbsp;&nbsp;12 First Class seats</p>
