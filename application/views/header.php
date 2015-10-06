@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html>
     <head>
 		<!-- Imported stuff -->
-		<link rel='shortcut icon' href="<?php echo asset_url(); ?>images/logohorse.png">
+	<link rel='shortcut icon' href="<?php echo asset_url(); ?>images/logohorse.png">
         <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/layout.css">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poiret+One">
