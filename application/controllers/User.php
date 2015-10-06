@@ -77,7 +77,7 @@ class User extends CI_Controller {
                     $this->session->set_userdata('email', $this->input->post('email'));
                     $this->session->set_userdata('phone', $this->input->post('phone'));
                     
-                redirect('/index.php/booking/cart/', 'refresh');
+                redirect('booking/cart/', 'refresh');
                 }
                 else{
                 $data = array(
