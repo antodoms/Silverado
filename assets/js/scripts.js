@@ -232,10 +232,12 @@ $(document).ready(function () {
 		var type = getCookie("seattype");
 		var seats = getCookie(type);
 
-		$("input[name=" + type + "]").val(seats);
-
-		if (seats === null)
+		if (seats === null || seats === "") {
+			deleteCookie(type);
 			return false;
+		}
+
+		$("input[name=" + type + "]").val(seats);
 
 		var parent = $("input[name=" + type + "]").parents('tr');
 		var numseats = seats.split(',').length;

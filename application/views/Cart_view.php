@@ -66,7 +66,7 @@
 			?>
 
 	<container>
-		<a href="<?php echo site_url('/movies')?>"><button>Add More Movies</button></a>
+		<a href="<?php echo base_url(); ?>index.php/movies/" onclick="deleteAllCookies()"><button>Add More Movies</button></a>
 		<a href="#"><button>Checkout</button></a>
 	</container>
 
