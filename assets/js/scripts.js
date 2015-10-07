@@ -1,8 +1,8 @@
-var seats = [["SA",1], ["SP",1], ["SC",1], 
-			 ["FA",2], ["FC",2], 
+var seats = [["SA",1], ["SP",1], ["SC",1],
+			 ["FA",2], ["FC",2],
 			 ["B1",3], ["B2",3], ["B3",3]];
 
-var ticketcheck = [["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12"], 
+var ticketcheck = [["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12"],
 				   ["B1","B2","B3","B4","B5","B11","B12","B13","B14","B15",
 					"B21","B22","B23","B24","B25","B31","B32","B33","B34","B35",
 					"B6","B7","B8","B9","B10","B16","B17","B18","B19","B20",
@@ -39,6 +39,7 @@ $(document).ready(function () {
 
 	loadTheatre();
 	resetTheatre();
+	deleteAllCookies();
 	$(".moviepanelextra").hide();
 	$("#ticketmenu").hide();
 
@@ -48,6 +49,7 @@ $(document).ready(function () {
 
 	$(document).on('click', '.moviepanel', function() {
 		var selected = $(this);	/* Cache the selected Panel */
+		deleteAllCookies();
 
 		/* Check if any movie panel was previously active. Hide/show accordingly */
 		if ($(this).hasClass("active")) {
@@ -156,17 +158,17 @@ $(document).ready(function () {
 
 		$(".ticketBtn").removeClass("active");
 		$(this).addClass("active");
-		
+
 		resetSeats();
 		setCookie("discount", checkDiscount(day, time), 1);
-		
+
 		$("input[name=movie]").val(activeMovie);
 		$("input[name=day]").val(day);
 		$("input[name=time]").val(time);
 
 		/* Show ticket menu and update table prices */
 		$("#ticketmenu").slideDown(1000);
-		
+
 		$("#ticketmenu .price").each( function(index) {
 			if (getCookie("discount") === "true")
 				$(this).html(priceDis[index]);
@@ -179,13 +181,13 @@ $(document).ready(function () {
 		$("#ticketmenu").slideUp(1000);
 		$(".ticketBtn").removeClass("active");
 	});
-	
+
 	/* Returns whether the screening should have a discount */
 	function checkDiscount(day, time) {
 
 		if (!screeningExists(movies[activeMovie], day, time))
 			return false;
-		
+
 		if (day.toString() === "Monday" || day.toString() === "Tuesday")
 			return true;
 
@@ -195,11 +197,11 @@ $(document).ready(function () {
 		}
 		return false;
 	}
-	
+
 	/* Returns whether the screening exists (in case user modified html) */
 	function screeningExists(movie, day, time) {
 		var validScreening = false;
-		
+
 		$.each(movies[activeMovie].screenings, function(d, t) {
 			if (day === d && time === t) {
 				validScreening = true;
@@ -207,11 +209,11 @@ $(document).ready(function () {
 		});
 		return validScreening;
 	}
-	
+
 	/**************************************************/
 	/* Theatre: Seat Booking Pop-up related functions */
 	/**************************************************/
-	
+
 	/* Each 'seat', which represent individual buttons */
 	$("#theatre button").click(function(){
 		$(this).toggleClass("enabled");
@@ -225,24 +227,24 @@ $(document).ready(function () {
 	$("#theatre .theatreOK").click(function () {
 		$(".blurrable").css("-webkit-filter", "blur(0.0px)");
 		$("#theatre").hide();
-		
+
 		/* set selected seats as hidden input value */
 		var type = getCookie("seattype");
 		var seats = getCookie(type);
-		
+
 		$("input[name=" + type + "]").val(seats);
-		
+
 		if (seats === null)
 			return false;
-		
+
 		var parent = $("input[name=" + type + "]").parents('tr');
 		var numseats = seats.split(',').length;
 		var price = removeCurrency(parent.children('.price').html());
-		
+
 		parent.children('.qty').html(numseats);
-		
+
 		parent.children('.subtotal').html("$" + (numseats * price).toFixed(2));
-		
+
 	});
 
 	function removeCurrency(amount) {
@@ -340,7 +342,6 @@ function deleteAllCookies() {
 		var eqPos = cookie.indexOf("=");
 		var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
 		document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-
 	}
 }
 
@@ -398,7 +399,7 @@ function resetTheatre(){
 
 // Fubction to set the theatre value as enabled in html
 function setTheatre(typeid){
-	
+
 	$(".blurrable").css("-webkit-filter", "blur(5.0px)");
 	setCookie("seattype", typeid , 1);
 
@@ -446,15 +447,15 @@ function resetSeats(){
 	for(var i=0; i< seats.length ; i++){
 		deleteCookie(seats[i][0]);
 	}
-	
+
 	$(".qty").each(function() {
 		$(this).html("0");
 	});
-	
+
 	$(".price").each(function() {
-		$(this).html("$0.00");	
+		$(this).html("$0.00");
 	});
-	
+
 	$("input[type=hidden]").each(function() {
 		$(this).val("0");
 	});
