@@ -55,7 +55,7 @@
 					echo '</section>';
 
 					echo '<section>';
-					echo '<a href="' . site_url('Booking/delete/') . '/' . ($i + 1) . '"><button>Remove From Cart</button></a><br><br>';
+					echo '<a href="' . site_url('Booking/delete/') . '/' . ($i + 1) . '" onclick="deleteAllCookies()"><button>Remove From Cart</button></a><br><br>';
 					echo '</section>';
 
 					echo '</container>';
@@ -71,8 +71,10 @@
 			?>
 
 	<container>
-		<a href="<?php echo site_url('/movies')?>"><button>Add More Movies</button></a>
-		<a href="<?php echo site_url('/booking/confirm')?>"><button>Checkout</button></a>
+
+		<a href="<?php echo base_url(); ?>index.php/movies/" onclick="deleteAllCookies()"><button>Add More Movies</button></a>
+		<a href="<?php echo site_url('/booking/confirm')?>" onclick="deleteAllCookies()"><button>Checkout</button></a>
+
 	</container>
 
 </article>
