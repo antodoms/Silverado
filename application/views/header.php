@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
+	<head>
 		<!-- Imported stuff -->
 	<link rel='shortcut icon' href="<?php echo asset_url(); ?>images/logohorse.png">
-        <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/layout.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/layout.css">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poiret+One">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Josefin+Sans">
@@ -23,12 +23,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script src="<?php echo asset_url(); ?>js/scripts.js"></script>
 
 		<title> Silverado | People's Own Theatre</title>
-    </head>
+	</head>
 
 	<!------------------------------------------------------------------------------------>
 
-    <body>
-        <div class="backgroundimage"></div>
+	<body>
+		<div class="backgroundimage"></div>
+
+		<a href="<?php echo base_url(); ?>index.php/booking/cart"><img class="carticon" src="<?php echo asset_url(); ?>images/cart.png"></a>
 
 		<!-- Masthead -->
 		<header>
@@ -37,19 +39,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<br>
 			<h2>404 HTML Street, Hypotheticaland 3001, CSS</h2>
 			<hr class="horizontalline"></hr>
-        </header>
+		</header>
 
 		<nav>
-            <a href="<?php echo base_url(); ?>index.php/" 
+			<a href="<?php echo base_url(); ?>index.php/"
 			   class=<?php if($this->router->fetch_method() == "index") echo "current" ?>>HOME</a>
-			
-            <a href="<?php echo base_url(); ?>index.php/movies/" 
+
+			<a href="<?php echo base_url(); ?>index.php/movies/"
 			   class=<?php if($this->router->fetch_method() == "movies") echo "current" ?>>NOW&nbsp;SHOWING</a>
-			
-            <a href="<?php echo base_url(); ?>index.php/price/" 
+
+			<a href="<?php echo base_url(); ?>index.php/price/"
 			   class=<?php if($this->router->fetch_method() == "price") echo "current" ?>>SCHEDULE&nbsp;&&nbsp;PRICES</a>
-			
-            <a href="<?php echo base_url(); ?>index.php/contact/" 
+
+			<a href="<?php echo base_url(); ?>index.php/contact/"
 			   class=<?php if($this->router->fetch_method() == "contact") echo "current" ?>>CONTACT</a>
 		</nav>
 

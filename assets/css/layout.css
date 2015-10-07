@@ -118,9 +118,7 @@ article h1 {
 	margin: 0.5em auto 0 auto;
 	display: inline-block;
 	text-align: center;
-	//background-color: rgba(105, 105, 105, 0.1);
 	color: cornsilk;
-	//color: burlywood;
 	font-family: 'Josefin Sans', sans-serif;
 	letter-spacing: 8px;
 }
@@ -141,6 +139,14 @@ section {
 	max-width: 350px;
 	padding: 10px;
 	color: white;
+}
+
+section.fixed250 {
+	width: 250px;
+}
+
+section.fixed300 {
+	width: 300px;
 }
 
 /******************** FOOTER ********************/
@@ -686,6 +692,7 @@ section h1 {
 	color:cornsilk;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 150%;
+	text-align: left;
 }
 
 section h2 {
@@ -896,3 +903,15 @@ container .sectionoffset {
 	filter: alpha(opacity=80);
 }
 
+.carticon {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 40px;
+	transition: opacity 0.2s ease;
+}
+
+.carticon:hover {
+	cursor: pointer;
+	opacity: 0.8;
+}
