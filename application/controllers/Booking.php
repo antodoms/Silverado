@@ -28,10 +28,32 @@ class Booking extends CI_Controller {
             
             $data = $this->session->all_userdata();
             
-            print "\n".json_encode($data);
+            //print "\n".json_encode($data);
             $this->load->view('Cart_view',
                       ['data' => $data]);
         }}
+        
+        public function purchase(){
+           
+            $data=$this->session->all_userdata();
+            if(empty($data['email']) || empty($data['phone'])){   
+                
+               redirect('user/login/','refresh');      
+            }
+            else {
+            
+                $datatemp = array(
+                'email' => $data['email'],
+                'phone' => $data['phone']
+                );
+                
+                $final=$this->Booking_model->user_purchases($this->Booking_model->getuserid($datatemp));
+                
+                //print "\n". json_encode($final->row());
+                $this->load->view('Purchase_view',
+                          ['data' => $final]);
+                }
+        }
         
         public function ifDiscount($day, $time) {
 

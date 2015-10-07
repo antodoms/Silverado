@@ -2,12 +2,26 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Booking_model extends CI_Model {
-
-
-	public function getUserData()
-	{
-                return $this->db->get('user')->result();
-	}
+    
+        public function user_purchases($data){
+            
+            $condition = "userid =" . "'" . $data . "'";
+            $this->db->select('data');
+            $this->db->from('ticket');
+            $this->db->where($condition);
+            $query = $this->db->get();
+            
+            $var = array();
+            foreach ($query->result() as $row)
+            {
+              //$var = array_merge($var ,  $row->data );  
+                
+              printf($row->data[0]);
+            }
+            
+            return $var;
+        }
+        
         
         public function add_bookings($data) {
             $this->db->insert('ticket', $data);
