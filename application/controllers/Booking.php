@@ -3,6 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Booking extends CI_Controller {
         
+    public function __construct() {
+        parent::__construct();
+
+        // Load form helper library
+        //$this->load->helper('form');
+
+        // Load form validation library
+        //$this->load->library('form_validation');
+
+        // Load session library
+        //$this->load->library('session');
+        $this->load->model('Booking_model');
+    }
+    
         public function cart(){
            
             $data=$this->session->all_userdata();
@@ -14,7 +28,7 @@ class Booking extends CI_Controller {
             
             $data = $this->session->all_userdata();
             
-            //print "\n".json_encode($data);
+            print "\n".json_encode($data);
             $this->load->view('Cart_view',
                       ['data' => $data]);
         }}
@@ -114,5 +128,29 @@ class Booking extends CI_Controller {
             redirect('booking/cart/', 'refresh');         
 	}
         
-
+        public function confirm()
+	{
+            $sessiondata = $this->session->userdata();
+            
+            $data = array(
+                'email' => $sessiondata['email'],
+                'phone' => $sessiondata['phone']
+                );
+            
+            $userid = $this->Booking_model->getuserid($data); 
+            //printf(json_encode($sessiondata['cart']));
+            $data = array(
+                'userid' => $userid,
+                'data' => json_encode($sessiondata['cart'])
+                );
+            
+            $this->Booking_model->add_bookings($data);
+            
+            
+            
+            $sessiondata['cart']= [];
+            $this->session->set_userdata($sessiondata);
+            
+            redirect('booking/purchase/', 'refresh');
+        }
 }

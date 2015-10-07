@@ -26,9 +26,14 @@
             }
             
             }
+            
+            else{
+               echo ' <p> Your cart is empty ! please add some movies to purchase';
+            }
             ?>
             <br><br>
            <a href="<?php echo site_url('/movies')?>"><button>Add More Movies</button></a>
+           <a href="<?php echo site_url('/booking/confirm')?>"><button>Confirm Booking Ticket</button></a>
         </section>
     </container>
 </article>

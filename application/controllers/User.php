@@ -85,12 +85,11 @@ class User extends CI_Controller {
         // Logout from admin page
         public function logout() {
             // Removing session data
-            $sess_array = array(
-            'username' => ''
-            );
-            $this->session->unset_userdata('logged_in', $sess_array);
+            
+            $this->session->unset_userdata('email', '');
+            $this->session->unset_userdata('phone', '');
             $data['message_display'] = 'Successfully Logout';
-            $this->load->view('login_form', ['data' => $data]);
+            $this->load->view('Login_form');
         }
     }
 
