@@ -6,19 +6,31 @@ class Booking_model extends CI_Model {
         public function user_purchases($data){
             
             $condition = "userid =" . "'" . $data . "'";
-            $this->db->select('data');
+            $this->db->select('*');
             $this->db->from('ticket');
             $this->db->where($condition);
             $query = $this->db->get();
             
             $var = array();
+            $k=0;
             foreach ($query->result() as $row)
-            {
-              //$var = array_merge($var ,  $row->data );  
+            {   
+                $vartemp = $row->data;
+                $x = count($var);
+                $var[$x] = substr($vartemp, 1, -1);
+                //$var[$x] = $row->ticketid;
+                $var[$x] = json_decode($var[$x],true);
+                $var[$x]['ticket'] = $row -> ticketid;
+              //$var[count($var)] = $row->data;  
                 
-              printf($row->data[0]);
+              
             }
-            
+            //$var2 = array();
+            //foreach ($var as $v){
+                //$var2[count($var2)] = json_decode($v,true);
+              // printf(json_encode($v)." <br><br> ");
+            //}
+            //printf(json_encode($var2)." <br><br> ");
             return $var;
         }
         
