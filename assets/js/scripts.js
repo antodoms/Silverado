@@ -437,6 +437,62 @@ function updateprice(){
 
 }
 
+function Validate() {
+    ///////////////////////////////////////Name Validation//////////////////////////
+    var Nameletters = /^[A-Za-z' ]+$/;
+    var NumbersMatch = /^[0-9]+$/;
+    var ReturnCount = 0;
+
+    if (document.myForm.Name.value == "") {
+        alert("Please fill out your name");
+        document.myForm.Name.focus();
+        // return false;
+    }
+
+    if (document.myForm.Name.value.match(Nameletters)) {
+        ReturnCount += 1;
+    }
+    else {
+        alert("Please use only valid letters");
+        document.myForm.Name.focus();
+        //return false;
+    }
+
+    //////////////////////////////////////phoneNumber validation////////////////////////
+    if (document.myForm.Phone.value == "") {
+        alert("Please fill out your Phone");
+        document.myForm.Phone.focus();
+        //return false;
+    }
+
+    if (document.myForm.Phone.value.match(NumbersMatch)) {
+        if (document.myForm.Phone.value.length < 10 || document.myForm.Phone.value.length > 10) {
+            alert("Please fill out your mobile number, mobile numbers have 10 digits");
+            document.myForm.Phone.focus();
+        }
+        else {
+            if (document.myForm.Phone.value[0] == "0" && document.myForm.Phone.value[1] == "4") {
+                ReturnCount += 1;
+            }
+            else {
+                alert("Mobile Numbers start with '04'");
+                document.myForm.Phone.focus();
+            }
+        }
+    }
+    else {
+        alert("Please type a number");
+        document.myForm.Phone.focus();
+    }
+
+    if (ReturnCount >= 2) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 //resetting the seat
 function resetSeats(){
 
