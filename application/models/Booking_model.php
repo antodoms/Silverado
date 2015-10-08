@@ -4,33 +4,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Booking_model extends CI_Model {
     
         public function user_purchases($data){
-            
-            $condition = "userid =" . "'" . $data . "'";
-            $this->db->select('*');
+            $condition = "userid='" . $data . "' order by timestamp desc";
+            $this->db->select('data');
             $this->db->from('ticket');
             $this->db->where($condition);
             $query = $this->db->get();
             
             $var = array();
-            $k=0;
+            //printf(json_encode($query));
             foreach ($query->result() as $row)
-            {   
-                $vartemp = $row->data;
+            {                
+                //$vartemp = $row->data;
                 $x = count($var);
-                $var[$x] = substr($vartemp, 1, -1);
-                //$var[$x] = $row->ticketid;
-                $var[$x] = json_decode($var[$x],true);
-                $var[$x]['ticket'] = $row -> ticketid;
-              //$var[count($var)] = $row->data;  
-                
-              
+                $vartemp = $row->data;
+                $var = array_merge($var,json_decode($vartemp,TRUE));
             }
-            //$var2 = array();
-            //foreach ($var as $v){
-                //$var2[count($var2)] = json_decode($v,true);
-              // printf(json_encode($v)." <br><br> ");
-            //}
-            //printf(json_encode($var2)." <br><br> ");
             return $var;
         }
         

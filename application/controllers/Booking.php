@@ -29,12 +29,11 @@ class Booking extends CI_Controller {
             $data = $this->session->all_userdata();
             
             //print "\n".json_encode($data);
-            $this->load->view('Cart_view',
-                      ['data' => $data]);
+            $this->load->view('Cart_view', ['data' => $data]);
         }}
         
         public function purchase(){
-           
+            
             $data=$this->session->all_userdata();
             if(empty($data['email']) || empty($data['phone'])){   
                 
@@ -46,12 +45,11 @@ class Booking extends CI_Controller {
                 'email' => $data['email'],
                 'phone' => $data['phone']
                 );
-                
-                $final=$this->Booking_model->user_purchases($this->Booking_model->getuserid($datatemp));
+                $user =$this->Booking_model->getuserid($datatemp);
+                $final=$this->Booking_model->user_purchases($user);
                 
                 //print "\n". json_encode($final->row());
-                $this->load->view('Purchase_view',
-                          ['data' => $final]);
+                $this->load->view('Purchase_view', ['data' => $final]);
                 }
         }
         
@@ -97,6 +95,7 @@ class Booking extends CI_Controller {
             $finalseats=array();
             $screening=array();
             $price=[];
+            
             $discount= $this->ifDiscount($this->input->post('day'), $this->input->post('time'));
             
             if($discount == true){
@@ -159,11 +158,15 @@ class Booking extends CI_Controller {
                 'phone' => $sessiondata['phone']
                 );
             
+            
+            $now = new DateTime ( NULL, new DateTimeZone('UTC'));
+            
             $userid = $this->Booking_model->getuserid($data); 
             //printf(json_encode($sessiondata['cart']));
             $data = array(
                 'userid' => $userid,
-                'data' => json_encode($sessiondata['cart'])
+                'data' => json_encode($sessiondata['cart']),
+                'timestamp' => $now->format('Y-m-d H:i:s')
                 );
             
             $this->Booking_model->add_bookings($data);
