@@ -31,6 +31,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="backgroundimage"></div>
 
 		<a href="<?php echo base_url(); ?>index.php/booking/cart"><img class="carticon" src="<?php echo asset_url(); ?>images/cart.png"></a>
+		<img class="usericon" onclick="toggleUserDropdown()" src="<?php echo asset_url(); ?>images/user.png">
+
+		<div id="userDropdown" hidden>
+			<a href="<?php echo base_url(); ?>index.php/"><p>My Profile</p></a>
+			<a href="<?php echo base_url(); ?>index.php/"><p>Purchase History</p></a>
+		</div>
 
 		<!-- Masthead -->
 		<header>
