@@ -129,6 +129,7 @@ $(document).ready(function () {
 		extrapanel.find("#title").html(title);
 		extrapanel.find("#summary").html(summary);
 		extrapanel.find("#trailer").html('<source src=' + trailer + ' type=video/mp4>');
+		extrapanel.find("#trailer").load();
 		extrapanel.find("#rating").html('<img src=' + rating + '>');
 		extrapanel.find("#description").html(description);
 		extrapanel.find("#sessions").html(screenings);
@@ -438,59 +439,59 @@ function updateprice(){
 }
 
 function Validate() {
-    ///////////////////////////////////////Name Validation//////////////////////////
-    var Nameletters = /^[A-Za-z' ]+$/;
-    var NumbersMatch = /^[0-9]+$/;
-    var ReturnCount = 0;
+	///////////////////////////////////////Name Validation//////////////////////////
+	var Nameletters = /^[A-Za-z' ]+$/;
+	var NumbersMatch = /^[0-9]+$/;
+	var ReturnCount = 0;
 
-    if (document.myForm.Name.value == "") {
-        alert("Please fill out your name");
-        document.myForm.Name.focus();
-        // return false;
-    }
+	if (document.myForm.Name.value == "") {
+		alert("Please fill out your name");
+		document.myForm.Name.focus();
+		// return false;
+	}
 
-    if (document.myForm.Name.value.match(Nameletters)) {
-        ReturnCount += 1;
-    }
-    else {
-        alert("Please use only valid letters");
-        document.myForm.Name.focus();
-        //return false;
-    }
+	if (document.myForm.Name.value.match(Nameletters)) {
+		ReturnCount += 1;
+	}
+	else {
+		alert("Please use only valid letters");
+		document.myForm.Name.focus();
+		//return false;
+	}
 
-    //////////////////////////////////////phoneNumber validation////////////////////////
-    if (document.myForm.Phone.value == "") {
-        alert("Please fill out your Phone");
-        document.myForm.Phone.focus();
-        //return false;
-    }
+	//////////////////////////////////////phoneNumber validation////////////////////////
+	if (document.myForm.Phone.value == "") {
+		alert("Please fill out your Phone");
+		document.myForm.Phone.focus();
+		//return false;
+	}
 
-    if (document.myForm.Phone.value.match(NumbersMatch)) {
-        if (document.myForm.Phone.value.length < 10 || document.myForm.Phone.value.length > 10) {
-            alert("Please fill out your mobile number, mobile numbers have 10 digits");
-            document.myForm.Phone.focus();
-        }
-        else {
-            if (document.myForm.Phone.value[0] == "0" && document.myForm.Phone.value[1] == "4") {
-                ReturnCount += 1;
-            }
-            else {
-                alert("Mobile Numbers start with '04'");
-                document.myForm.Phone.focus();
-            }
-        }
-    }
-    else {
-        alert("Please type a number");
-        document.myForm.Phone.focus();
-    }
+	if (document.myForm.Phone.value.match(NumbersMatch)) {
+		if (document.myForm.Phone.value.length < 10 || document.myForm.Phone.value.length > 10) {
+			alert("Please fill out your mobile number, mobile numbers have 10 digits");
+			document.myForm.Phone.focus();
+		}
+		else {
+			if (document.myForm.Phone.value[0] == "0" && document.myForm.Phone.value[1] == "4") {
+				ReturnCount += 1;
+			}
+			else {
+				alert("Mobile Numbers start with '04'");
+				document.myForm.Phone.focus();
+			}
+		}
+	}
+	else {
+		alert("Please type a number");
+		document.myForm.Phone.focus();
+	}
 
-    if (ReturnCount >= 2) {
-        return true;
-    }
-    else {
-        return false;
-    }
+	if (ReturnCount >= 2) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 //resetting the seat
@@ -517,4 +518,27 @@ function resetSeats(){
 	$("input[type=hidden]").each(function() {
 		$(this).val("0");
 	});
+}
+
+function toggleShowMore() {
+	var showmorediv = $("#showmore");
+
+	if (showmorediv.is(":hidden")) {
+		showmorediv.slideDown(1000);
+		$(event.target).text("Show Less");
+	}
+	else {
+		showmorediv.slideUp(1000);
+		$(event.target).text("Show More");
+	}
+}
+
+function toggleUserDropdown() {
+	var dropdown = $("#userDropdown");
+
+	if (dropdown.is(":hidden"))
+		dropdown.slideDown(500);
+	else
+		dropdown.slideUp(500);
+
 }
