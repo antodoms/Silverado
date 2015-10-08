@@ -28,8 +28,33 @@ class User extends CI_Controller {
         
         // Show login page
         public function login() {
-            
-        $this->load->view('Login_form');
+        
+         $data=$this->session->all_userdata();
+            if(empty($data['email']) || empty($data['phone'])){  
+                
+               $this->load->view('Login_form');   
+            }
+            else{
+                
+                $data = array(
+                'email' => $data['email'],
+                'phone' => $data['phone']
+                ); 
+                
+                $result = $this->user_model->login($data);
+                
+                if($result == TRUE){
+                    
+                redirect('booking/cart/', 'refresh');
+                }
+                else{
+                $data = array(
+                'error_message' => 'Invalid Username or Password'
+                );
+                $this->load->view('login_form', ['data' => $data]);
+                }
+            }
+        
         }
 
         // Show registration page
