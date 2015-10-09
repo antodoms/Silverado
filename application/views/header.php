@@ -39,6 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div id="userDropdown" hidden>
 			<a href="<?php echo base_url(); ?>index.php/user"><p>My Profile</p></a>
 			<a href="<?php echo base_url(); ?>index.php/booking/purchase"><p>Purchase History</p></a>
+                        <a href="<?php echo base_url(); ?>index.php/user/logout"><p>Logout</p></a>
 		</div>
 
 		<!-- Masthead -->

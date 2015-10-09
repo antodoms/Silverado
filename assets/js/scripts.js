@@ -432,7 +432,7 @@ function setTheatre(typeid){
 		}
 	}      
     
-    $.getJSON("/index.php/booking/notavailable", function(result) {
+    $.getJSON("../booking/notavailable", function(result) {
   
         var movie = document.getElementById('movie').value;
     var day = document.getElementById('day').value;
