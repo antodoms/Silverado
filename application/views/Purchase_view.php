@@ -2,9 +2,11 @@
 
 <article>
 
-	<h1>YOUR PURCHASE HISTORY</h1>
+	<container>
+		<h1>YOUR PURCHASE HISTORY</h1>
+		<hr class="horizontalline">
 
-				<?php
+		<?php
 
 			$json_file = file_get_contents("https://titan.csit.rmit.edu.au/~e54061/wp/moviesJSON.php");
 			$JSONmovies = json_decode($json_file);
@@ -19,7 +21,7 @@
 				"B2" => "Beanbag (2 persons)",
 				"B3" => "Beanbag (3 children)"
 			];
-                        
+
 			if(!empty($data)) {
 
 				for ($i = 0 ; $i < count($data) ; $i++) {
@@ -54,25 +56,28 @@
 					}
 					echo '</section>';
 
-				
-
 					echo '</container>';
 					echo '<hr class="horizontalline">';
 				}
-                                
+
 
 			}
-                        else{
-               echo ' <section><p> Your cart is empty ! please add some movies to purchase</p></section>';
-            }
-            
+			else{
+			   echo ' <section><p> Your cart is empty ! please add some movies to purchase</p></section>';
+			}
+
 			?>
 
-	<container>
+			<!-- Checkout Button -->
+			<container>
 
-		<a href="<?php echo site_url('/booking/cart')?>" onclick="deleteAllCookies()"><button>Checkout Cart</button></a>
+				<a href="<?php echo site_url('/booking/cart')?>" onclick="deleteAllCookies()">
+					<button>Checkout Cart</button>
+				</a>
 
-	</container>		
+			</container>
+
+	</container>
 
 </article>
 

@@ -30,8 +30,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<body>
 		<div class="backgroundimage"></div>
 
-		<a href="<?php echo base_url(); ?>index.php/booking/cart"><img class="carticon" src="<?php echo asset_url(); ?>images/cart.png"></a>
-		<img class="usericon" onclick="toggleUserDropdown()" src="<?php echo asset_url(); ?>images/user.png">
+		<img class="usericon" title="Profile actions" onclick="toggleUserDropdown()" src="<?php echo asset_url(); ?>images/user.png">
+
+		<a href="<?php echo base_url(); ?>index.php/booking/cart">
+			<img class="carticon" title="View your shopping cart" src="<?php echo asset_url(); ?>images/cart.png">
+		</a>
 
 		<div id="userDropdown" hidden>
 			<a href="<?php echo base_url(); ?>index.php/user"><p>My Profile</p></a>
@@ -60,4 +63,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<a href="<?php echo base_url(); ?>index.php/contact/"
 			   class=<?php if($this->router->fetch_method() == "contact") echo "current" ?>>CONTACT</a>
 		</nav>
-
