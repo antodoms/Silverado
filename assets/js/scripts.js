@@ -434,7 +434,7 @@ function setTheatre(typeid){
     
     $.getJSON("../booking/notavailable", function(result) {
   
-        var movie = document.getElementById('movie').value;
+    var movie = document.getElementById('movie').value;
     var day = document.getElementById('day').value;
     var time = document.getElementById('time').value;
     

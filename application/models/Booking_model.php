@@ -59,8 +59,42 @@ class Booking_model extends CI_Model {
                 return $query->row()->id;
             } 
             else {
-                return 0;
+                return false;
             }
+        }
+        
+        public function getemail($id) {
+            $condition = "id='" . $id . "'";
+            $this->db->select('email');
+            $this->db->from('user');
+            $this->db->where($condition);
+            $this->db->limit(1);
+            $query = $this->db->get();
+            
+            if ($query->num_rows() ==1) {
+                return $query->row()->email;
+            } 
+            else {
+                return false;
+            }
+        }
+        
+        public function showticket($data){
+            
+            $condition = "email='" . $data['email'] . "' AND token='". $data['token'] . "'";
+            $this->db->select('*');
+            $this->db->from('ticket');
+            $this->db->where($condition);
+            $this->db->limit(1);
+            $query = $this->db->get();
+            
+            if ($query->num_rows() ==1) {
+                return $query->result();
+            } 
+            else {
+                return false;
+            }
+            
         }
         
         public function getseats($data) {

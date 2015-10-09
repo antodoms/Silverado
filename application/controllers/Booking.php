@@ -175,9 +175,26 @@ class Booking extends CI_Controller {
             redirect('booking/cart/', 'refresh');         
 	}
         
+        public function ticket(){
+            $email = $this->input->get('email');
+            $token = $this->input->get('token');
+            $data = array(
+                'email' => $email,
+                'token' => $token
+                );
+            $query= $this->Booking_model->showticket($data);
+            
+            if($query==false){
+                redirect('movies/', 'refresh');
+            }else{
+                //var_dump(json_decode($query[0]->data,true));
+                $this->load->view('Ticket_view', ['data' => json_decode($query[0]->data, true),'url'=> $query[0]->url]);
+            }
+        }
         public function confirm()
 	{
             $sessiondata = $this->session->userdata();
+            $this->load->helper('string');
             
             $data = array(
                 'email' => $sessiondata['email'],
@@ -186,23 +203,32 @@ class Booking extends CI_Controller {
             
             
             $now = new DateTime ( NULL, new DateTimeZone('UTC'));
-            
+            $token = random_string('alnum',5);
             $userid = $this->Booking_model->getuserid($data); 
+            $email = $this->Booking_model -> getemail($userid);
+            $rootUrl = "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=".base_url()."index.php/booking/ticket/?email=".$email."%26token=".$token;
+      
             //printf(json_encode($sessiondata['cart']));
             $data = array(
                 'userid' => $userid,
                 'data' => json_encode($sessiondata['cart']),
-                'timestamp' => $now->format('Y-m-d H:i:s')
+                'timestamp' => $now->format('Y-m-d H:i:s'),
+                'token' => $token,
+                'email' => $email,
+                'url' => $rootUrl
                 );
             
+            
+            //4
+            //echo '<img src="'.$rootUrl.'">';
             $this->Booking_model->add_bookings($data);
             
             $this->addseatstodb($sessiondata['cart']);
             
             $sessiondata['cart']= [];
             $this->session->set_userdata($sessiondata);
-            
-            redirect('booking/purchase/', 'refresh');
+            $link = "booking/ticket/?email=".$email."&token=".$token;
+            redirect($link, 'refresh');
         }
         
         public function addseatstodb($datas){
