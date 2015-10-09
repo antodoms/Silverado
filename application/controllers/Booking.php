@@ -72,10 +72,25 @@ class Booking extends CI_Controller {
             
             $data = $this->session->all_userdata();
             $temp = array();
+            $temp2 = array();
+            $temptotalseats = array();
             for ($i=0; $i < count($data['cart']);$i++) {
                 
                 if($i != ($itemid-1)){
                     $temp[count($temp)] = $data['cart'][$i];
+                }else{
+                    $movie = $data['cart'][$i]['movie'];
+                    $day = $data['cart'][$i]['day'];
+                    $time = $data['cart'][$i]['time'];
+                    $temp2 = $data['unseat'][$movie][$day][$time]['b'];
+                    //printf(json_encode($temp2));
+                    $test = $data['cart'][$i]['seats'];
+                    foreach ($test as $seat){
+                        $temptotalseats = array_merge($temptotalseats, $seat['seats']);
+                    }
+                    //printf(json_encode($temptotalseats));
+                    $data['unseat'][$movie][$day][$time]['b']= array_diff($temptotalseats,$temp2);
+                    
                 }
             }
             
@@ -92,6 +107,9 @@ class Booking extends CI_Controller {
             $totseat = ['SA', 'SP', 'SC', 'FA', 'FC', 'B1', 'B2', 'B3'];
             $priceReg = ["18","15","12","30","25","30","30","30"];
             $priceDis = ["12","10","8","25","20","20","20","20"];
+            
+            $data = $this-> session -> all_userdata();
+            $totalselectedseats=array();
             $finalseats=array();
             $screening=array();
             $price=[];
@@ -111,6 +129,7 @@ class Booking extends CI_Controller {
                 {
                     
                     $a=explode(',', $a);
+                    $totalselectedseats=  array_merge($totalselectedseats, $a);
                     $rate = $price[$i];
                     $seats = array('type' => $totseat[$i],'quantity' => count($a), 'price' => $rate, 'seats'  => $a);
                     $subtotal= $subtotal + ($rate * count($a));
@@ -126,6 +145,7 @@ class Booking extends CI_Controller {
             }
             
             $seats = array('movie'=> $this->input->post('movie'),'day'=>$this->input->post('day'),'time'=>$this->input->post('time'),'seats' => $finalseats, 'sub-total'=>$subtotal);
+            
             $screening = array('screening'=> $seats);
             
             if($this->session->userdata('cart')== null){
@@ -135,8 +155,7 @@ class Booking extends CI_Controller {
                 $getcart = $this->session->userdata('cart');
                 $getcart[count($getcart)] = $seats;
             }
-                
-            $data = $this-> session -> all_userdata();
+            
             $data['cart'] = $getcart;
             $total=0;
             foreach ($data['cart'] as $value) {
@@ -144,8 +163,15 @@ class Booking extends CI_Controller {
             } 
             
             $data['total'] = $total;
-            
+            $data['unseat'][$this->input->post('movie')][$this->input->post('day')][$this->input->post('time')]['b']= $totalselectedseats;
             $this->session->set_userdata($data);
+            
+            //$data = $this->session->userdata();
+            
+            
+            
+            
+            
             redirect('booking/cart/', 'refresh');         
 	}
         
@@ -241,9 +267,22 @@ class Booking extends CI_Controller {
         
         public function notavailable(){
             
-            
+            $data = $this-> session -> all_userdata();
             $seats= $this-> Booking_model->getallseats();
             
+            foreach($seats as $seat){
+                
+                
+                $data['unseat'][$seat->movie][$seat->day][$seat->time]['a']=  json_decode($seat->seats,true);
+                //printf(json_encode($seat->seats));
+            }
+            
+           $this->session->set_userdata($data); 
+           
+           $text = $this-> session -> all_userdata();
+           //$final= $text['unseat'][$this->input->get('movie')][$this->input->get('day')][$this->input->get('time')];
+           printf(json_encode($text));
+           //printf(json_encode($text['unseat']));
             
         }
 }

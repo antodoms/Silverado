@@ -430,8 +430,28 @@ function setTheatre(typeid){
 				document.getElementById(data[j]).disabled = true;
 			}
 		}
-	}
+	}      
+    
+    $.getJSON("/index.php/booking/notavailable", function(result) {
+  
+        var movie = document.getElementById('movie').value;
+    var day = document.getElementById('day').value;
+    var time = document.getElementById('time').value;
+    
+    var a = result['unseat'][movie][day][time]['a'];
+    var b = result['unseat'][movie][day][time]['b'];
+    
+    for (i=0;i< a.length; i++){
+        document.getElementById(a[i]).disabled = true;
+    }
+    
+    for (i=0;i< b.length; i++){
+        document.getElementById(b[i]).disabled = true;
+    }
+    
+    });
 }
+
 
 //update the price of table whenever the function is called
 function updateprice(){

@@ -81,9 +81,9 @@
 				</tr>
 				
 				<!-- Other useful values that will be passed in the form -->
-				<input type="hidden" name="movie" value="">
-				<input type="hidden" name="day" value="">
-				<input type="hidden" name="time" value="">
+				<input type="hidden" id="movie" name="movie" value="">
+				<input type="hidden" id="day" name="day" value="">
+				<input type="hidden" id="time" name="time" value="">
 			</table>
 		</fieldset>
 

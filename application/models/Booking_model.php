@@ -100,23 +100,13 @@ class Booking_model extends CI_Model {
         }
         
         public function getallseats(){
-            $data= array();
-            $data = $this-> session -> all_userdata();
+            
             $this->db->select('*');
             $this->db->from('seats');
             $query = $this->db->get();
             
-            //return $query;
+            return $query->result();
             
-            foreach($query->result() as $seat){
-                
-                
-                $data['unseat'][$seat->movie][$seat->day][$seat->time]['a']=  json_decode($seat->seats,true);
-                //printf(json_encode($seat->seats));
-            }
             
-           $this->session->set_userdata($data); 
-            
-           printf(json_encode($this-> session -> all_userdata()));
         }
 }
