@@ -62,4 +62,61 @@ class Booking_model extends CI_Model {
                 return 0;
             }
         }
+        
+        public function getseats($data) {
+            $condition = "movie='" . $data['movie'] . "' AND day='". $data['day'] . "' AND time='". $data['time']  . "'";
+            $this->db->select('seats');
+            $this->db->from('seats');
+            $this->db->where($condition);
+            $this->db->limit(1);
+            $query = $this->db->get();
+            //$test = $query->row()->seats;
+            
+            if ($query->num_rows() ==1) {
+                return $query->row()->seats;
+            } 
+            else {
+                return false;
+            }
+            
+        }
+        
+        public function add_seats($data) {
+            $condition = "movie='" . $data['movie'] . "' AND day='". $data['day'] . "' AND time='". $data['time']  . "'";
+            $this->db->select('id');
+            $this->db->from('seats');
+            $this->db->where($condition);
+            $this->db->limit(1);
+            $query = $this->db->get();
+            
+            if ($query->num_rows() ==1) {
+                
+                $this->db->where('id', $query->row()->id);
+                $this->db->update('seats', $data); 
+            }
+            else {
+                $this->db->insert('seats', $data);
+            }
+        }
+        
+        public function getallseats(){
+            $data= array();
+            $data = $this-> session -> all_userdata();
+            $this->db->select('*');
+            $this->db->from('seats');
+            $query = $this->db->get();
+            
+            //return $query;
+            
+            foreach($query->result() as $seat){
+                
+                
+                $data['unseat'][$seat->movie][$seat->day][$seat->time]['a']=  json_decode($seat->seats,true);
+                //printf(json_encode($seat->seats));
+            }
+            
+           $this->session->set_userdata($data); 
+            
+           printf(json_encode($this-> session -> all_userdata()));
+        }
 }

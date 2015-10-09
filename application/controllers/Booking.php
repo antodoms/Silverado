@@ -171,11 +171,79 @@ class Booking extends CI_Controller {
             
             $this->Booking_model->add_bookings($data);
             
-            
+            $this->addseatstodb($sessiondata['cart']);
             
             $sessiondata['cart']= [];
             $this->session->set_userdata($sessiondata);
             
             redirect('booking/purchase/', 'refresh');
+        }
+        
+        public function addseatstodb($datas){
+            
+            foreach($datas as $data){
+                
+            $seatget = array(
+                'movie' => $data['movie'],
+                'day' => $data['day'],
+                'time' => $data['time']
+                );
+            
+            $query = $this->Booking_model->getseats($seatget);
+            
+            //printf($query[0]."   ooo   ");
+            $totseats = [];
+            if($query==false){
+                
+                foreach ($data['seats'] as $seat){
+                
+                    foreach ($seat['seats'] as $seatno){
+                        $totseats[count($totseats)] = $seatno;
+                    }
+                }
+                
+                //printf("query is 0 ".json_encode($totseats));
+                $tosend = array (
+                    'movie' => $data['movie'],
+                    'day' => $data['day'],
+                    'time' => $data['time'],
+                    'seats' => json_encode($totseats)
+                );
+                
+             $this->Booking_model->add_seats($tosend);   
+            }
+            else{
+                foreach (json_decode($query,true) as $seatno){
+                        $totseats[count($totseats)] = $seatno;
+                    }
+                    
+                foreach ($data['seats'] as $seat){
+                
+                    foreach ($seat['seats'] as $seatno){
+                        $totseats[count($totseats)] = $seatno;
+                    }
+                }
+            
+                //printf("query is not 0 ".$totseats);
+                $tosend = array (
+                    'movie' => $data['movie'],
+                    'day' => $data['day'],
+                    'time' => $data['time'],
+                    'seats' => json_encode($totseats)
+                );
+                
+             $this->Booking_model->add_seats($tosend);
+             
+             
+           } 
+        }
+        }
+        
+        public function notavailable(){
+            
+            
+            $seats= $this-> Booking_model->getallseats();
+            
+            
         }
 }
