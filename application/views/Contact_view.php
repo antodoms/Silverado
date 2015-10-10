@@ -28,7 +28,7 @@
 			<br>
 			<form method="post" action="http://titan.csit.rmit.edu.au/~e54061/wp/testcontact.php">
 				<label for="email">Email: </label>
-				<input type="email" name="email" id="email" required></input>
+				<input type="email" name="email" id="email" placeholder="user@example.com" required></input>
 				<br>
 				<label for="subject">Subject: </label>
 				<select name="subject" id="subject" required>

@@ -78,7 +78,11 @@
 				echo '<hr class="horizontalline">';
 			}
 
-			echo '<h1> <b> Total Price: </b> ' . toDollars($data['total']) . '</h1>';
+			echo '<h2>Voucher Code: </h2>';
+			echo '<input type="text" name="voucher" value="" required/>';
+			echo '<button onclick="checkVoucher()"> Apply</button>';
+
+			echo '<h1 class="totalprice"> <b> Total Price: </b> ' . toDollars($data['total']) . '</h1>';
 
 			echo '<hr class="horizontalline">';
 		}

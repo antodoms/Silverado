@@ -22,6 +22,8 @@ var activeMovie = "AC";		/* Keep track of which movie the user is currently 'vie
 
 var movies = {};
 
+var discounted = false;
+
 app.controller('moviesController', function($scope, $http) {
 	$http.get("https://jupiter.csit.rmit.edu.au/~e54061/wp/moviesJSON.php")
 	.success(function(data) {
@@ -249,10 +251,6 @@ $(document).ready(function () {
 		parent.children('.subtotal').html("$" + (numseats * price).toFixed(2));
 
 	});
-
-	function removeCurrency(amount) {
-		return Number(amount.replace(/[^0-9.]+/g,""));
-	}
 });
 
 //**********************************************************************************************************//
@@ -430,26 +428,26 @@ function setTheatre(typeid){
 				document.getElementById(data[j]).disabled = true;
 			}
 		}
-	}      
-    
-    $.getJSON("../booking/notavailable", function(result) {
-  
-    var movie = document.getElementById('movie').value;
-    var day = document.getElementById('day').value;
-    var time = document.getElementById('time').value;
-    
-    var a = result['unseat'][movie][day][time]['a'];
-    var b = result['unseat'][movie][day][time]['b'];
-    
-    for (i=0;i< a.length; i++){
-        document.getElementById(a[i]).disabled = true;
-    }
-    
-    for (i=0;i< b.length; i++){
-        document.getElementById(b[i]).disabled = true;
-    }
-    
-    });
+	}
+
+	$.getJSON("../booking/notavailable", function(result) {
+
+	var movie = document.getElementById('movie').value;
+	var day = document.getElementById('day').value;
+	var time = document.getElementById('time').value;
+
+	var a = result['unseat'][movie][day][time]['a'];
+	var b = result['unseat'][movie][day][time]['b'];
+
+	for (i=0;i< a.length; i++){
+		document.getElementById(a[i]).disabled = true;
+	}
+
+	for (i=0;i< b.length; i++){
+		document.getElementById(b[i]).disabled = true;
+	}
+
+	});
 }
 
 
@@ -562,3 +560,78 @@ function toggleUserDropdown() {
 		dropdown.slideUp(500);
 
 }
+
+function checkVoucher() {
+	var code = $("input[name=voucher]").val();
+
+	if (discounted == false) {
+		if (ClientCheckCode(code)) {
+			$.ajax({
+				url: "checkvoucher",
+				data: { code : code },
+				type: "GET",
+				dataType: "JSON",
+				success: function(response) {
+
+					if (response.success === 'true') {
+						var total = removeCurrency($(".totalprice").text());
+						var newtotal = total * 0.8;
+
+						alert("Successfully added voucher code.");
+
+						$(".totalprice").text("Total price (discounted): $" + newtotal.toFixed(2));
+
+						discounted = true;
+					}
+				},
+				error: function() {
+					alert("Invalid voucher code.");
+				}
+			});
+			return false;
+		}
+	}
+	else {
+		alert("Voucher already applied!");
+	}
+}
+
+function ClientCheckCode(var1)
+{
+	/* User didn't include hyphens */
+	if (var1.length == 12)
+	{
+		dummy = var1[0] + var1[1] + var1[2] + var1[3] + var1[4] + var1[5] + var1[6] + var1[7] +
+			var1[8] + var1[9] + var1[10].toUpperCase() + var1[11].toUpperCase();
+		var1 = dummy;
+		console.log(var1, "Final output");
+		return true;
+	}
+	/* User included hyphens */
+	else if (var1.length == 14)
+	{
+		if (var1[5] == "-" && var1[11] == "-")
+		{
+			dummy = var1[0] + var1[1] + var1[2] + var1[3] + var1[4] + var1[6] + var1[7] + var1[8] +
+			var1[9] + var1[10] + var1[12].toUpperCase() + var1[13].toUpperCase();
+			var1 = dummy;
+			console.log(var1, "Final output2");
+			return true;
+		}
+	   else
+		{
+			alert("The code you entered is not formatted correctly");
+			return false;
+		}
+	}
+	else
+	{
+		alert("The code you entered is not formatted correctly");
+		return false;
+	}
+}
+
+function removeCurrency(amount) {
+	return Number(amount.replace(/[^0-9.]+/g,""));
+}
+

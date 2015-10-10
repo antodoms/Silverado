@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html>
 	<head>
 		<!-- Imported stuff -->
-                <link rel='shortcut icon' href="<?php echo asset_url(); ?>images/logohorse.png">
+		<link rel='shortcut icon' href="<?php echo asset_url(); ?>images/logohorse.png">
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/layout.css">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poiret+One">
@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div id="userDropdown" hidden>
 			<a href="<?php echo base_url(); ?>index.php/user"><p>My Profile</p></a>
 			<a href="<?php echo base_url(); ?>index.php/booking/purchase"><p>Purchase History</p></a>
-                        <a href="<?php echo base_url(); ?>index.php/user/logout"><p>Logout</p></a>
+			<a href="<?php echo base_url(); ?>index.php/user/logout"><p>Logout</p></a>
 		</div>
 
 		<!-- Masthead -->

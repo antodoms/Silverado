@@ -124,6 +124,16 @@ article h1 {
 	letter-spacing: 8px;
 }
 
+article h2 {
+	width: 100%;
+	font-size: 150%;
+	margin: 0.1em auto 0.1em auto;
+	display: inline-block;
+	text-align: center;
+	color: cornsilk;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
 container {
 	width: 100%;
 	max-width: 1000px;
@@ -142,12 +152,21 @@ section {
 	color: white;
 }
 
+section.fixed100 {
+	width: 100px;
+}
+
 section.fixed200 {
 	width: 200px;
 }
 
 section.fixed300 {
 	width: 300px;
+}
+
+section.fixed600 {
+	max-width: 500px;
+	width: 500px;
 }
 
 /******************** FOOTER ********************/
@@ -984,4 +1003,24 @@ container .sectionoffset {
 .cartticket p {
 	margin: 0.5em;
 	transform: none;
+}
+
+.historylink {
+	text-decoration: none;
+	background-color: rgba(155, 155, 155, 0.1);
+	transition: background-color 0.1s ease;
+}
+
+.historylink:hover {
+	background-color: rgba(235, 171, 83, 0.2);
+}
+
+.historylinkalt {
+	text-decoration: none;
+	background-color: rgba(255, 255, 255, 0.1);
+	transition: background-color 0.1s ease;
+}
+
+.historylinkalt:hover {
+	background-color: rgba(235, 171, 83, 0.2);
 }
