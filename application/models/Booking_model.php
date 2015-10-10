@@ -5,21 +5,13 @@ class Booking_model extends CI_Model {
     
         public function user_purchases($data){
             $condition = "userid='" . $data . "' order by timestamp desc";
-            $this->db->select('data');
+            $this->db->select('*');
             $this->db->from('ticket');
             $this->db->where($condition);
             $query = $this->db->get();
             
-            $var = array();
-            //printf(json_encode($query));
-            foreach ($query->result() as $row)
-            {                
-                //$vartemp = $row->data;
-                $x = count($var);
-                $vartemp = $row->data;
-                $var = array_merge($var,json_decode($vartemp,TRUE));
-            }
-            return $var;
+            
+            return $query->result();
         }
         
         

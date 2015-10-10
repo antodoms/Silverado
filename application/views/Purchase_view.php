@@ -26,13 +26,19 @@
 
 				for ($i = 0 ; $i < count($data) ; $i++) {
 
-					$booking = $data[$i];
-
-					echo '<container>';
+					$bookings = $data[$i];
+                                        //echo $data[$i];
+                                        $tokentemp = $token[$i];
+                                        $emailtemp = $email[$i];
+					
+                                        
+                                        foreach ($bookings as $booking){
+                                        echo '<container>'; 
 					echo '<section>';
-					echo '<img src=' . $JSONmovies->$booking['movie']->poster . '>';
+					echo $tokentemp.'  '. $emailtemp .'<img src=' . $JSONmovies->$booking['movie']->poster . '>';
 					echo '</section>';
-
+                                        
+                                        
 					/* Basic Booking Information */
 					echo '<section class="fixed300">';
 					echo '<h1>' . $JSONmovies->$booking['movie']->title . '</h1>';
@@ -55,8 +61,11 @@
 
 					}
 					echo '</section>';
-
-					echo '</container>';
+                                        echo '<a href="'.base_url().'index.php/booking/ticket/?email='.$emailtemp.'&token='.$tokentemp.'">View ticket</a>';
+                                        
+                                        echo '</container>';   
+                                        }
+					
 					echo '<hr class="horizontalline">';
 				}
 

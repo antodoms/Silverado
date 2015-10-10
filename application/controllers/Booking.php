@@ -48,8 +48,29 @@ class Booking extends CI_Controller {
                 $user =$this->Booking_model->getuserid($datatemp);
                 $final=$this->Booking_model->user_purchases($user);
                 
+                $var = array();
+                $token = array();
+                $email = array();
+                $x=0;
+                //printf(json_encode($query));
+                foreach ($final as $row)
+                {                
+                    //$vartemp = $row->data;
+                    //$x = count($var);
+                    $vartemp = $row->data;
+                    $tokentemp = $row->token;
+                    $emailtemp = $row->email;
+                    $urltemp = $row->url;
+                    $var[$x] = json_decode($vartemp,TRUE);
+                    $token[$x] = $tokentemp;
+                    $email[$x] = $emailtemp;
+                    $url[$x] = $urltemp;
+                    $x= $x+1;
+                }
+                
+                //printf(json_encode($var)."        \n");
                 //print "\n". json_encode($final->row());
-                $this->load->view('Purchase_view', ['data' => $final]);
+                $this->load->view('Purchase_view', ['data' => $var, 'email' => $email, 'token' => $token, 'url'=> $url]);
                 }
         }
         
