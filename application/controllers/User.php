@@ -32,7 +32,7 @@ class User extends CI_Controller {
             $data=$this->session->all_userdata();
             if(empty($data['email']) || empty($data['phone'])){  
                 
-                $this->load->view('login_form', ['data' => $data]);  
+                $this->load->view('Login_form', ['data' => $data]);  
             }
             else{
                 
