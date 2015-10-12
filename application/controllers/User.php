@@ -29,10 +29,10 @@ class User extends CI_Controller {
         // Show login page
         public function login() {
         
-         $data=$this->session->all_userdata();
+            $data=$this->session->all_userdata();
             if(empty($data['email']) || empty($data['phone'])){  
                 
-               $this->load->view('Login_form');   
+                $this->load->view('login_form', ['data' => $data]);  
             }
             else{
                 
@@ -48,10 +48,9 @@ class User extends CI_Controller {
                 redirect('booking/cart/', 'refresh');
                 }
                 else{
-                $data = array(
-                'error_message' => 'Invalid Username or Password'
-                );
-                $this->load->view('login_form', ['data' => $data]);
+                $this->session->set_flashdata('flash', array('message' => 'Invalid Username and Password','class' => 'danger'));
+                    
+                redirect('User/login/', 'refresh');
                 }
             }
         
