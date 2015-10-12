@@ -1,10 +1,12 @@
 <?php include_once("header.php") ?>
 
 <article>
-	<h1>YOUR CART</h1>
+<!--
+	<h1>YOUR TICKET DETAILS</h1>
 
 	<container>
 		<hr class="horizontalline">
+-->
 
 		<?php
 
@@ -27,8 +29,17 @@
 		}
 
 		if(!empty($data)) {
-                    $toTal=0;
-                    echo '<img src=' . $url . '>';
+			$total = 0;
+
+			$tokentemp = substr($url, -5, 5);
+
+			echo '<container>';
+			echo '<img src=' . $url . '>';
+			echo '</container>';
+			echo '<h1>Past Transaction (' . $tokentemp . ')</h1>';
+			echo '<container>';
+			echo '<hr class="horizontalline">';
+
 			for ($i = 0 ; $i < count($data) ; $i++) {
 
 				$screening = $data[$i];
@@ -57,7 +68,9 @@
 					echo '<p> <b>Seats: </b> ';
 					echo implode(', ', $booking['seats']);
 					echo '</p>';
-                                        $toTal = $toTal + $booking['price'] * $booking['quantity'];
+
+					$total = $total + $booking['price'] * $booking['quantity'];
+
 					echo '<p> <b>Subtotal Price: </b>' . toDollars($booking['price'] * $booking['quantity']) . '</p>';
 					echo '</div>';
 
@@ -69,16 +82,12 @@
 
 				echo '</container>';
 
-				echo '<container>';
-
-				echo '</container>';
-
 				echo '<hr class="horizontalline">';
 			}
 
-			echo '<h1> <b> Total Price: </b> ' . $toTal . '</h1>';
-
-			echo '<hr class="horizontalline">';
+			echo '<container>';
+			echo '<a href="' . base_url() . 'index.php/booking/purchase"><button class="myButton">Back to History</button></a>';
+			echo '</container>';
 		}
 		else {
 			echo '<h1> Your cart is empty! </h1>';
@@ -89,7 +98,7 @@
 		?>
 
 		<!-- [Add More Movies] and [Checkout] buttons -->
-		
+
 
 	</container>
 

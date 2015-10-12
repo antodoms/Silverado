@@ -1,7 +1,7 @@
 var seats = [["SA",1], ["SP",1], ["SC",1],
 			 ["FA",2], ["FC",2],
 			 ["B1",3], ["B2",3], ["B3",3]];
-
+var code;
 var ticketcheck = [["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12"],
 				   ["B1","B2","B3","B4","B5","B11","B12","B13","B14","B15",
 					"B21","B22","B23","B24","B25","B31","B32","B33","B34","B35",
@@ -21,6 +21,8 @@ var app = angular.module('SilveradoApp', []);
 var activeMovie = "AC";		/* Keep track of which movie the user is currently 'viewing' */
 
 var movies = {};
+
+var discounted = false;
 
 app.controller('moviesController', function($scope, $http) {
 	$http.get("https://jupiter.csit.rmit.edu.au/~e54061/wp/moviesJSON.php")
@@ -249,10 +251,6 @@ $(document).ready(function () {
 		parent.children('.subtotal').html("$" + (numseats * price).toFixed(2));
 
 	});
-
-	function removeCurrency(amount) {
-		return Number(amount.replace(/[^0-9.]+/g,""));
-	}
 });
 
 //**********************************************************************************************************//
@@ -430,26 +428,26 @@ function setTheatre(typeid){
 				document.getElementById(data[j]).disabled = true;
 			}
 		}
-	}      
-    
-    $.getJSON("../booking/notavailable", function(result) {
-  
-    var movie = document.getElementById('movie').value;
-    var day = document.getElementById('day').value;
-    var time = document.getElementById('time').value;
-    
-    var a = result['unseat'][movie][day][time]['a'];
-    var b = result['unseat'][movie][day][time]['b'];
-    
-    for (i=0;i< a.length; i++){
-        document.getElementById(a[i]).disabled = true;
-    }
-    
-    for (i=0;i< b.length; i++){
-        document.getElementById(b[i]).disabled = true;
-    }
-    
-    });
+	}
+
+	$.getJSON("../booking/notavailable", function(result) {
+
+	var movie = document.getElementById('movie').value;
+	var day = document.getElementById('day').value;
+	var time = document.getElementById('time').value;
+
+	var a = result['unseat'][movie][day][time]['a'];
+	var b = result['unseat'][movie][day][time]['b'];
+
+	for (i=0;i< a.length; i++){
+		document.getElementById(a[i]).disabled = true;
+	}
+
+	for (i=0;i< b.length; i++){
+		document.getElementById(b[i]).disabled = true;
+	}
+
+	});
 }
 
 
@@ -562,3 +560,86 @@ function toggleUserDropdown() {
 		dropdown.slideUp(500);
 
 }
+
+function checkVoucher() {
+	code = $("input[name=voucher]").val();
+		if (ClientCheckCode(code)) {
+			$.ajax({
+				url: "checkvoucher",
+				data: { code : code },
+				type: "GET",
+				dataType: "JSON",
+				success: function(response) {
+                                        
+					if (response.success === 'true' && discounted==false && response.code === '') {
+						var total = removeCurrency($(".totalprice").text());
+						var newtotal = total * 0.8;
+
+						alert("Successfully added voucher code.");
+
+						$(".totalprice").text("Total price (discounted): $" + newtotal.toFixed(2));
+
+						discounted = true;
+                                                
+                                                
+					}
+                                        else if(response.success === 'false' && discounted==true){
+                                            var total = removeCurrency($(".totalprice").text());
+                                            var newtotal = total/0.8;
+                                            alert("Invalid voucher code.");
+                                            $(".totalprice").text("Total price : $" + newtotal.toFixed(2));
+                                            discounted = false;
+                                            code='';
+                                           
+                                        }
+                                        else if(response.success === 'true' && response.code != ''){
+                                            alert("You have already added a voucher before.");
+                                        }
+                                        
+				},
+				error: function() {
+					alert("Invalid voucher code.");
+                                        $(".totalprice").text("Total price : $" + newtotal.toFixed(2));
+                                        discounted = false;
+                                        code='';
+				}
+			});
+			return false;
+		}
+}
+
+function ClientCheckCode(var1)
+{       
+        var1 = var1.split('-').join('');
+        var dump=[];
+   //     dump = var1[0]+var1[1]+var1[2]+var1[3]+var1[4]+var1[5]+var1[6]+var1[7]+var1[8]+var1[9]+var1[10].toUpperCase()+var1[11].toUpperCase();
+    //    var1 = dump;
+        
+        for (i = 0; i < var1.length - 2; i ++)
+        {
+           dump += var1[i]; 
+        }
+        dump += var1[var1.length - 2].toUpperCase();
+        dump += var1[var1.length - 1].toUpperCase();
+        
+        var1 = dump;
+        console.log(var1.length);
+	/* User didn't include hyphens */
+	if (var1.length == 12)
+	{
+		console.log(var1, "Final output");
+                code =var1;
+		return true;
+	}
+	else
+	{
+            console.log(var1);
+            alert("The code you entered is not formatted correctly");
+            return false;
+	}
+}
+
+function removeCurrency(amount) {
+	return Number(amount.replace(/[^0-9.]+/g,""));
+}
+
