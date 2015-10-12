@@ -65,7 +65,12 @@ class User extends CI_Controller {
 // Validate and store registration data in database
         public function registration_check(){
 
-            
+                $this->form_validation->set_rules('email','email', 'trim|required|valid_email');
+               // $this->form_validation->set_rules('name', 'name', 'required');
+              //  $this->form_validation->set_rules('phone', 'phone', 'required');
+  
+                if($this->form_validation->run() !== false){
+                
                 $data = array(
                 'name' => $this->input->post('name'),
                 'email' => $this->input->post('email'),
@@ -74,13 +79,21 @@ class User extends CI_Controller {
                 
                 $result = $this->user_model->register_user($data);
                 if ($result == TRUE) {
-                    $data['message_display'] = 'Registration Successfully !';
-                    $this->load->view('Login_form', ['data' => $data]);
+                    $this->session->set_flashdata('flash', array('message' => 'Thank You For Registering! Please Login','class' => 'success'));
+                    
+                    redirect('User/login/', 'refresh');
                 } else {
-                    $data['message_display'] = 'User already exist!';
-                    $this->load->view('Registration_form', ['data' => $data]);
+                    $this->session->set_flashdata('flash', array('message' => 'User Email or Phone you entered Already Exist!','class' => 'warning'));
+                    
+                    redirect('User/register/', 'refresh');
                 }
-            
+                }
+                else{
+                    $this->session->set_flashdata('flash', array('message' => 'Form Validation Failed !','class' => 'danger'));
+                    
+                    redirect('User/register/', 'refresh');
+                    
+                }
         }
 
 // Check for user login process
@@ -96,14 +109,15 @@ class User extends CI_Controller {
                     
                     $this->session->set_userdata('email', $this->input->post('email'));
                     $this->session->set_userdata('phone', $this->input->post('phone'));
-                    
-                redirect('booking/cart/', 'refresh');
+                
+                    $this->session->set_flashdata('flash', array('message' => 'You Have Successfully Logged In!','class' => 'success'));
+                        
+                    redirect('booking/cart/', 'refresh');
                 }
                 else{
-                $data = array(
-                'error_message' => 'Invalid Username or Password'
-                );
-                $this->load->view('login_form', ['data' => $data]);
+                $this->session->set_flashdata('flash', array('message' => 'Login Error ! Email or Phone you entered is Wrong. ','class' => 'danger'));
+                    
+                redirect('User/login/', 'refresh');
                 }
         }
 
@@ -113,8 +127,9 @@ class User extends CI_Controller {
             
             $this->session->unset_userdata('email', '');
             $this->session->unset_userdata('phone', '');
-            $data['message_display'] = 'Successfully Logout';
-            $this->load->view('Login_form');
+            $this->session->set_flashdata('flash', array('message' => 'You Have Sucessfully Logged Out !','class' => 'success'));
+                    
+                redirect('User/login/', 'refresh');
         }
     }
 

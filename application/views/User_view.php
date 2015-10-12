@@ -1,3 +1,8 @@
+<?php include_once("header.php") ?>
+<?php include_once("flash.php") ?>
+
+<article>
+<container>
 <h4> User Details </h4>
 
 <?php
@@ -7,4 +12,7 @@
      }
  }
 ?>
+</container>
+</article>
+<?php include_once("footer.php") ?>
 

@@ -4,6 +4,7 @@
 	<h1>LOG IN</h1>
 	<container>
 		<section>
+                <?php include_once("flash.php") ?>
 			<form method="post" action="<?php echo site_url('user/login_check')?>" name="myForm" onsubmit="return(Validate());">
 				<label>Phone: </label>
 				<input type="text" name="phone">

@@ -37,9 +37,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</a>
 
 		<div id="userDropdown" hidden>
-			<a href="<?php echo base_url(); ?>index.php/user"><p>My Profile</p></a>
-			<a href="<?php echo base_url(); ?>index.php/booking/purchase"><p>Purchase History</p></a>
-			<a href="<?php echo base_url(); ?>index.php/user/logout"><p>Logout</p></a>
+                    <?php
+                    $userdetails = $this-> session -> all_userdata();
+                    if(empty($userdetails['email']) || empty($userdetails['phone'])){
+                        echo '<a href="'.base_url().'index.php/User/login"><p>Login</p></a>';
+                        echo '<a href="'.base_url().'index.php/User/register"><p>Register</p></a>';
+                    }
+                    else{
+                        echo '<a href="'.base_url().'index.php/user"><p>My Profile</p></a>';
+                        echo '<a href="'.base_url().'index.php/booking/purchase"><p>Purchase History</p></a>';
+                        echo '<a href="'.base_url().'index.php/user/logout"><p>Logout</p></a>';
+                    }
+                    ?>
 		</div>
 
 		<!-- Masthead -->

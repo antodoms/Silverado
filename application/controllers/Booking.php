@@ -28,7 +28,7 @@ class Booking extends CI_Controller {
 
 		$data = $this->session->all_userdata();
 
-		print "\n".json_encode($data);
+		//print "\n".json_encode($data);
 		$this->load->view('Cart_view', ['data' => $data]);
 	}}
 
@@ -182,7 +182,7 @@ public function add()
 		foreach ($data['cart'] as $value) {
 			$total=$total + $value['sub-total'];
 		}
-
+                $data['voucher']= '';
 		$data['total'] = $total;
 		$data['unseat'][$this->input->post('movie')][$this->input->post('day')][$this->input->post('time')]['b']= $totalselectedseats;
 		$this->session->set_userdata($data);
@@ -249,6 +249,8 @@ public function add()
 		$sessiondata['cart']= [];
 		$this->session->set_userdata($sessiondata);
 		$link = "booking/ticket/?email=".$email."&token=".$token;
+                $this->session->set_flashdata('flash', array('message' => 'Thank You for Purchasing with US :)','class' => 'success'));
+              
 		redirect($link, 'refresh');
 	}
 

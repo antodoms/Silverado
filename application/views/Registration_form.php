@@ -4,6 +4,7 @@
 	<h1>REGISTER</h1>
 	<container>
 		<section>
+                    <?php include_once("flash.php") ?>
 			<form method="post" action="<?php echo site_url('User/registration_check')?>" name="myForm" onsubmit="return(Validate());">
 				<label>Name: </label>
 				<input type="text" name="name" required/>

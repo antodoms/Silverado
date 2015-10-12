@@ -1,5 +1,5 @@
 <?php include_once("header.php") ?>
-
+<?php include_once("flash.php") ?>
 <article>
 
 	<container>
@@ -39,14 +39,22 @@
 						echo '<a class="historylinkalt" href=' . base_url() .
 						'index.php/booking/ticket/?email=' . $emailtemp . '&token=' . $tokentemp . '>';
 					}
-
+                                        $x =0;
 					foreach ($bookings as $booking) {
 
 						echo '<container>';
-
-						echo '<section class="fixed100">';
-							echo '<h2>' . $tokentemp . '</h2>';
-						echo '</section>';
+                                                
+                                                if($x==0){
+                                                    echo '<section class="fixed100">';
+                                                    echo '<h2>#' . $tokentemp . '</h2>';
+                                                    echo '</section>';
+                                                }else{
+                                                    
+                                                    echo '<section class="fixed100">';
+                                                    echo '<h2></h2>';
+                                                    echo '</section>';
+                                                }
+						$x=1;
 
 						/* Basic Booking Information */
 						echo '<section class="fixed300">';

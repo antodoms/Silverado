@@ -473,6 +473,44 @@ footer a:hover { color: crimson; }
 
 }
 
+.warning {
+    background-color: rgba(255, 224, 0, 0.55);
+    padding: 10px;
+    color: white;
+    border: 1px solid rgba(241, 236, 236, 0.22);
+}
+
+.success {
+    background-color: rgba(157, 255, 0, 0.55);
+    padding: 10px;
+    color: white;
+    border: 2px solid rgba(241, 236, 236, 0.22);
+}
+
+.danger {
+    background-color: #ff3333;
+    padding: 10px;
+    color: white;
+    border: 2px solid rgba(241, 236, 236, 0.22);
+}
+button.closex {
+    float: right;
+    margin-top: -12px;
+    background-color: rgba(0, 0, 0, 0.35);
+    color: white;
+    border: none;
+    font-size: 12px;
+    box-shadow: 1px 1px 1px 2px rgba(255, 255, 255, 0.21);
+    margin-right: -12px;
+    border-radius: 15px;
+}
+
+#flash {
+    max-width: 500px;
+    margin: 17px auto;
+    border-radius: 8px;
+}
+
 /******************** MRD STUFF ************************/
 /** SINGLE PANEL **/
 .moviepanel {
@@ -1009,6 +1047,7 @@ container .sectionoffset {
 	text-decoration: none;
 	background-color: rgba(155, 155, 155, 0.1);
 	transition: background-color 0.1s ease;
+            margin: 10px;
 }
 
 .historylink:hover {

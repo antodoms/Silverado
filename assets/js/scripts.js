@@ -48,7 +48,7 @@ $(document).ready(function () {
 	/**********************************************/
 	/* Movie panel (when you click on the poster) */
 	/**********************************************/
-
+       
 	$(document).on('click', '.moviepanel', function() {
 		var selected = $(this);	/* Cache the selected Panel */
 		deleteAllCookies();
@@ -184,7 +184,8 @@ $(document).ready(function () {
 		$("#ticketmenu").slideUp(1000);
 		$(".ticketBtn").removeClass("active");
 	});
-
+        
+        
 	/* Returns whether the screening should have a discount */
 	function checkDiscount(day, time) {
 
@@ -462,46 +463,46 @@ function Validate() {
 	var NumbersMatch = /^[0-9]+$/;
 	var ReturnCount = 0;
 
-	if (document.myForm.Name.value == "") {
+	if (document.myForm.name.value == "") {
 		alert("Please fill out your name");
-		document.myForm.Name.focus();
+		document.myForm.name.focus();
 		// return false;
 	}
 
-	if (document.myForm.Name.value.match(Nameletters)) {
+	if (document.myForm.name.value.match(Nameletters)) {
 		ReturnCount += 1;
 	}
 	else {
 		alert("Please use only valid letters");
-		document.myForm.Name.focus();
+		document.myForm.name.focus();
 		//return false;
 	}
 
 	//////////////////////////////////////phoneNumber validation////////////////////////
-	if (document.myForm.Phone.value == "") {
+	if (document.myForm.phone.value == "") {
 		alert("Please fill out your Phone");
-		document.myForm.Phone.focus();
+		document.myForm.phone.focus();
 		//return false;
 	}
 
-	if (document.myForm.Phone.value.match(NumbersMatch)) {
-		if (document.myForm.Phone.value.length < 10 || document.myForm.Phone.value.length > 10) {
+	if (document.myForm.phone.value.match(NumbersMatch)) {
+		if (document.myForm.phone.value.length < 10 || document.myForm.phone.value.length > 10) {
 			alert("Please fill out your mobile number, mobile numbers have 10 digits");
-			document.myForm.Phone.focus();
+			document.myForm.phone.focus();
 		}
 		else {
-			if (document.myForm.Phone.value[0] == "0" && document.myForm.Phone.value[1] == "4") {
+			if (document.myForm.phone.value[0] == "0" && document.myForm.phone.value[1] == "4") {
 				ReturnCount += 1;
 			}
 			else {
 				alert("Mobile Numbers start with '04'");
-				document.myForm.Phone.focus();
+				document.myForm.phone.focus();
 			}
 		}
 	}
 	else {
 		alert("Please type a number");
-		document.myForm.Phone.focus();
+		document.myForm.phone.focus();
 	}
 
 	if (ReturnCount >= 2) {
@@ -641,5 +642,12 @@ function ClientCheckCode(var1)
 
 function removeCurrency(amount) {
 	return Number(amount.replace(/[^0-9.]+/g,""));
+}
+
+function removeflash(){
+    
+    var ab=document.getElementById('flash');
+    ab.hidden = true;
+    
 }
 

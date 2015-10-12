@@ -28,7 +28,7 @@ class User_model extends CI_Model {
         
         public function register_user($data){
             // Query to check whether username already exist or not
-            $condition = "email =" . "'" . $data['email'] . "'";
+            $condition = "email ='" . $data['email'] . "' OR phone='".$data['phone']."'";
             $this->db->select('*');
             $this->db->from('user');
             $this->db->where($condition);

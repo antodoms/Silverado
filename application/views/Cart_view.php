@@ -1,9 +1,10 @@
 <?php include_once("header.php") ?>
-
+<?php include_once("flash.php") ?>
 <article>
 	<h1>YOUR CART</h1>
-
+        
 	<container>
+            
 		<hr class="horizontalline">
 
 		<?php
@@ -82,7 +83,7 @@
 			echo '<input type="text" name="voucher" value="'.$data['voucher'].'" required/>';
 			echo '<button onclick="checkVoucher()"> Apply</button>';
                         
-                        if($data['voucher']!=''){
+                        if(!empty($data['voucher'])){
                             echo '<h1 class="totalprice"> <b> Total Price ( Discounted Price ): </b> ' . toDollars($data['total'] * 0.8) . '</h1>';
                         }
                         else{
